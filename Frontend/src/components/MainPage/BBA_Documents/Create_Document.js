@@ -50,22 +50,19 @@ const Create_Document = () => {
   const [DocumentTagWrite, setDocumentTagWrite] = useState("");
   const useParam = useParams();
   useEffect(() => {
-    document.title = "View Categories Wise";
+    document.title = "DOCUMENTS ADD FORM";
 
     getDataapicall();
   }, [searchdata]);
 
   useEffect(() => {
-    document.title = "View Categories Wise";
+    document.title = "DOCUMENTS ADD FORM";
 
     getCategory();
   }, []);
 
   const getDataapicall = () => {
-    const userDataString = localStorage.getItem('userData');
-    const userData = JSON.parse(userDataString);
-    console.log("userData.usertype",userData)
-    axios.get(`${BaseUrl}/documents/getdataCategory_wise/${userData.usertype}`).then((res) => {
+    axios.get(`${BaseUrl}/documents/getdata`).then((res) => {
       console.log(res.data.data);
 
       const AllgetaData = res.data.data.filter(
@@ -147,80 +144,7 @@ const Create_Document = () => {
   useEffect(() => {
     console.log(HeadingTag);
   }, [document_tag]);
-  const onSubmit = (data) => {
-    setprogressShow(true);
-    var datentime = new Date().toLocaleString();
-    var date = datentime.split("/")[1];
-    var month = datentime.split("/")[0];
-    var year = datentime.split(",")[0].split("/")[2];
-    var time = datentime.split(",")[1];
-    var RearangeTime = date + "/" + month + "/" + year + "," + time;
-    console.log(RearangeTime);
-    const employee_id = 685;
-    const formData = new FormData();
-    var meeting_date = data.meeting_date;
-    var meeting_date_day = meeting_date.split("-")[2];
-    var meeting_date_month = meeting_date.split("-")[1];
-    var meeting_date_year = meeting_date.split("-")[0];
-    var rearrange_meeting_date =
-      meeting_date_day + "/" + meeting_date_month + "/" + meeting_date_year;
-    console.log(rearrange_meeting_date);
 
-    if (data.doc_id == "") {
-      data.doc_id = nextDocId;
-    }
-
-    formData.append("datentime", RearangeTime);
-    formData.append("id", data.doc_id);
-    formData.append("name", documentType);
-    formData.append("employee_id", employee_id);
-    formData.append("meeting_date", rearrange_meeting_date);
-
-    console.log(data);
-    if (data.documents.length > 1) {
-      for (let i = 0; i < data.documents.length; i++) {
-        formData.append("documents", data.documents[i]);
-      }
-    } else {
-      formData.append("documents", data.documents[0]);
-    }
-    if (HeadingTag.length > 0) {
-      for (let i = 0; i < HeadingTag.length; i++) {
-        formData.append("document_tag", HeadingTag[i].name);
-      }
-    } else {
-      formData.append("document_tag", HeadingTag);
-    }
-    axios
-      .post(`${BaseUrl}/documents/process_post`, formData, {
-        onUploadProgress: (data) => {
-          //Set the progress value to show the progress bar
-          console.log(data);
-          setProgress(Math.round((100 * data.loaded) / data.total));
-        },
-      })
-      .then((response) => {
-        if (response) {
-          console.log(response.data.data);
-          window.$("#exampleModal").modal("hide");
-          getDataapicall();
-          reset({
-            document_type: "",
-            doc_id: "",
-            meeting_date: "",
-            documents: "",
-          });
-          setnextDocId("");
-          setdocumentType("");
-          setHeadingTag([]);
-
-          setprogressShow(false);
-        }
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  };
 
   const EditIndividual = (id) => {
     console.log(Alldata);
@@ -236,8 +160,8 @@ const Create_Document = () => {
     if (data.document_id == "") {
       data.document_id = UpdateDataFound.MEETING_ID;
     }
-    if (data.name == "") {
-      data.name = UpdateDataFound.NAME;
+    if (data.category_id == "") {
+      data.category_id = UpdateDataFound.CATEGORY_ID;
     }
     if (data.id == "") {
       data.id = UpdateDataFound.ID;
@@ -274,7 +198,7 @@ const Create_Document = () => {
   //data delete
   const DeleteIndividual_vendor = (id) => {
     setvendorDeleteId(id);
-console.log(id)
+
     swal({
       title: "Are you sure want to delete?",
       icon: "warning",
@@ -426,7 +350,7 @@ console.log(id)
               >
                 {/* ADD DOCUMENT START */}
 
-               
+             
               </div>
 
               {/*ADD DOCUMENT END*/}
@@ -485,7 +409,173 @@ console.log(id)
 
               {/* update vendor modal start */}
 
-              
+              <div
+                class="modal custom-modal fade "
+                id="vendor_update"
+                tabindex="-1"
+                aria-labelledby="exampleModalLabel"
+                aria-hidden="true"
+              >
+                <div class="modal-dialog modal-lg" role="document">
+                  <div class="modal-content modal-content_docs">
+                    <div class="modal-header">
+                      <h6
+                        class="modal-title"
+                        id="exampleModalLabel"
+                        style={{
+                          fontWeight: "600",
+                          color: "#5265ac",
+                          fontSize: "15px",
+                        }}
+                      >
+                        <i className="fa fa-pencil m-r-5" /> Update Document
+                        {/*UpdateDataFound.id*/}
+                      </h6>
+                      <button
+                        type="button"
+                        class="close"
+                        data-dismiss="modal"
+                        aria-label="Close"
+                      >
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    {/* handleSubmit1(onSubmit1) */}
+                    {/* vendor update form */}
+                    <div class="modal-body ">
+                      <div className="row Product_add">
+                        {/* vendor form */}
+                        <form
+                          onSubmit={handleSubmit1(onSubmitUpdate)}
+                          class="form_design"
+                        >
+                          <div className="mb-2 row" style={{ display: "none" }}>
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              {" "}
+                              <span style={{ color: "red" }}>*</span>id
+                            </label>
+                            <div className="col-sm-8">
+                              <input
+                                type="number"
+                                class="form-control bba_documents-form-control"
+                                placeholder="Id"
+                                defaultValue={UpdateDataFound.ID}
+                                {...register1("id")}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              {" "}
+                              <span style={{ color: "red" }}>*</span> document
+                              id
+                            </label>
+                            <div className="col-sm-8">
+                              <input
+                                type="text"
+                                class="form-control bba_documents-form-control"
+                                placeholder="Id"
+                                defaultValue={UpdateDataFound.MEETING_ID}
+                                {...register1("document_id")}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              {" "}
+                              <span style={{ color: "red" }}>*</span> Held on
+                              the date
+                            </label>
+                            <div className="col-sm-8">
+                              <input
+                                type="text"
+                                class="form-control bba_documents-form-control"
+                                placeholder="Held on the date"
+                                defaultValue={UpdateDataFound.MEETING_DATE}
+                                {...register1("meeting_date")}
+                              />
+                            </div>
+                          </div>
+                          <div className="mb-2 row ">
+                            <label
+                              for="inputtext"
+                              class="col-sm-4 col-form-label"
+                            >
+                              {" "}
+                              <span style={{ color: "red" }}>*</span>Documents
+                              Type
+                            </label>
+                            {/* <div className="col-sm-8">
+                              <input
+                                type="text"
+                                class="form-control bba_documents-form-control"
+                                placeholder=" Document Types"
+                                id="validationDefault07"
+                                defaultValue={UpdateDataFound.NAME}
+                                {...register1("name")}
+                              />
+                            </div> */}
+
+                            <div className="col-sm-8">
+                              <select
+                                class="form-select form-control bba_documents-form-control"
+                                {...register1("category_id")}
+                              >
+                                {categoryData.length > 0 && (
+                                  <>
+                                    {categoryData.map((row, index) => (
+                                      <>
+                                        {row.ID ==
+                                          UpdateDataFound.CATEGORY_ID && (
+                                          <option
+                                            value={row.ID}
+                                            selected="selected"
+                                          >
+                                            {row.CATEGORY_NAME}
+                                          </option>
+                                        )}
+
+                                        {row.ID !=
+                                          UpdateDataFound.CATEGORY_ID && (
+                                          <option value={row.ID}>
+                                            {row.CATEGORY_NAME}
+                                          </option>
+                                        )}
+                                      </>
+                                    ))}
+                                  </>
+                                )}
+                              </select>
+                            </div>
+                          </div>
+
+                          <div className="SubmitFooter">
+                            <button type="submit" class="Button_success">
+                              <span>Update</span>
+                            </button>
+                            <button
+                              type="button"
+                              class="Button_Danger1"
+                              data-dismiss="modal"
+                            >
+                              <span> Close</span>
+                            </button>
+                          </div>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           {/* update vendor modal end  */}

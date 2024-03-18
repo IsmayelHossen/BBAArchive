@@ -9,7 +9,6 @@ const View_Route = require('./BBA Controller/View');
 const Create_Route = require('./BBA Controller/Create');
 const Delete_Route = require('./BBA Controller/Delete');
 const Update_Route = require('./BBA Controller/Update');
-const Createcat_Route = require('./BBA Controller/Createcat');
 const LoginRegRouter = require('./BBA Controller/LoginReg');
 const routes=express.Router({})
 const dotenv = require("dotenv");

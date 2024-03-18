@@ -4,6 +4,7 @@ const mysql = require("mysql");
 const path = require("path");
 const multer = require("multer");
 const DBQuery = require("../Database/Query_Builder");
+const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsingjws");
 //database
 var a;
 var b;
@@ -37,7 +38,7 @@ const upload = multer({
 const uploadSingleImage = upload.array("documents");
 const uploadFile_more = upload.array("add_more_file");
 
-Create_Route.post("/process_post", async function (req, res, next) {
+Create_Route.post("/process_post",RouteCheckUsingJWT, async function (req, res, next) {
   uploadSingleImage(req, res, async function (err) {
     if (err) {
       console.log(err);
@@ -45,7 +46,7 @@ Create_Route.post("/process_post", async function (req, res, next) {
     }
 
     console.log(req.body);
-    const { datentime, id, name, employee_id, meeting_date,accessibility } = req.body;
+    const { datentime, id, category_id, employee_id, meeting_date,accessibility } = req.body;
     // var document_tag = req.body.document_tag.replace(/'/g, "''");
     var sumTag = "";
     if (
@@ -60,7 +61,7 @@ Create_Route.post("/process_post", async function (req, res, next) {
       sumTag = req.body.document_tag.replace(/'/g, "''");
     }
 
-    const query = `INSERT INTO DOCUMENTS(datentime, meeting_id, NAME,emp_id,meeting_date,document_tag,doctype) VALUES('${datentime}','${id}', '${name}','${employee_id}','${meeting_date}','${sumTag}','${accessibility}')`;
+    const query = `INSERT INTO DOCUMENTS(datentime, meeting_id, category_id,emp_id,meeting_date,document_tag,doctype) VALUES('${datentime}','${id}', '${category_id}','${employee_id}','${meeting_date}','${sumTag}','${accessibility}')`;
     const result = await DBQuery(query);
     const get_document_id_query = "SELECT MAX(ID) as id from documents";
     const document_id_result = await DBQuery(get_document_id_query);
@@ -80,7 +81,7 @@ Create_Route.post("/process_post", async function (req, res, next) {
   });
 });
 
-Create_Route.post("/add_moreFile", async function (req, res, next) {
+Create_Route.post("/add_moreFile",RouteCheckUsingJWT, async function (req, res, next) {
   uploadFile_more(req, res, async function (err) {
     if (err) {
       console.log("hhh");
@@ -99,7 +100,7 @@ Create_Route.post("/add_moreFile", async function (req, res, next) {
   });
 });
 
-Create_Route.post("/category/add", async function (req, res, next) {
+Create_Route.post("/category/add",RouteCheckUsingJWT, async function (req, res, next) {
   console.log(req.body);
   const category_name = req.body.category_name.replace(/'/gi, "''");
   const query = `INSERT INTO  category(category_name) VALUES('${category_name}')`;

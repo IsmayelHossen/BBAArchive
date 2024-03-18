@@ -7,8 +7,9 @@ const fs = require("fs");
 const { log } = require("console");
 //database
 const DBQuery = require("../Database/Query_Builder");
+const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsingjws");
 
-Delete_Route.delete("/delete/docs/:id/:filename", async function (req, res) {
+Delete_Route.delete("/delete/docs/:id/:filename",RouteCheckUsingJWT, async function (req, res) {
   const id = req.params.id;
   console.log(id);
   const query = `delete from fileupload where id='${id}'`;
@@ -24,7 +25,7 @@ Delete_Route.delete("/delete/docs/:id/:filename", async function (req, res) {
   });
 });
 
-Delete_Route.delete("/delete/:id", async function (req, res) {
+Delete_Route.delete("/delete/:id",RouteCheckUsingJWT, async function (req, res) {
   const id = req.params.id;
   console.log("delete",{ id });
   const allfilename = `select*from fileupload where documents_id=${id}`;
@@ -47,7 +48,7 @@ Delete_Route.delete("/delete/:id", async function (req, res) {
 });
 //category delete
 
-Delete_Route.delete("/category/delete/:id", async function (req, res) {
+Delete_Route.delete("/category/delete/:id",RouteCheckUsingJWT, async function (req, res) {
   const id = req.params.id;
   console.log(id);
   const query = `delete from category where id='${id}'`;

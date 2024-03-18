@@ -9,9 +9,10 @@ const DBQuery = async function db_query(query) {
   user: 'root',
   password: '',
      database: 'document',
-     charset: 'utf8mb4'
+    //  charset: 'utf8mb4'
     });
     await new Promise((resolve, reject) => {
+      
       connection.connect((err) => {
         if (err) {
           reject(err);

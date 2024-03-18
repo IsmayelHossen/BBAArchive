@@ -49,6 +49,11 @@ const Create_Document1 = () => {
   const [document_tag, setdocument_tag] = useState("");
   const [DocumentTagWrite, setDocumentTagWrite] = useState("");
 
+
+//user info
+const userDataString = localStorage.getItem('userData');
+const userData = JSON.parse(userDataString);
+
   useEffect(() => {
     document.title = "DOCUMENTS ADD FORM";
 
@@ -119,15 +124,26 @@ const Create_Document1 = () => {
   };
   //tag add
   const SubmitTagAdd = (e) => {
-    e.preventDefault();
-    const document_tag1 = {
-      name: document_tag,
-    };
-    setHeadingTag([...HeadingTag, document_tag1]);
-
-    console.log(HeadingTag);
-    console.log(document_tag);
-    setdocument_tag("");
+    if(document_tag==""){
+      e.preventDefault();
+      swal({
+        title: "Please Add Some Tags,Heading or Important Key words!",
+        icon: "warning",
+        button: "Ok!",
+      });
+    }
+    else{
+      e.preventDefault();
+      const document_tag1 = {
+        name: document_tag,
+      };
+      setHeadingTag([...HeadingTag, document_tag1]);
+  
+      console.log(HeadingTag);
+      console.log(document_tag);
+      setdocument_tag("");
+    }
+   
   };
   const DemoDataDelete = (index) => {
     // alert(index);
@@ -152,7 +168,7 @@ const Create_Document1 = () => {
     var time = datentime.split(",")[1];
     var RearangeTime = date + "/" + month + "/" + year + "," + time;
     console.log(RearangeTime);
-    const employee_id = 685;
+    const employee_id = userData.user_id;
     const formData = new FormData();
     var meeting_date = data.meeting_date;
     var meeting_date_day = meeting_date.split("-")[2];
@@ -168,7 +184,7 @@ const Create_Document1 = () => {
 
     formData.append("datentime", RearangeTime);
     formData.append("id", data.doc_id);
-    formData.append("name", documentType);
+    formData.append("category_id", documentType);
     formData.append("employee_id", employee_id);
     formData.append("meeting_date", rearrange_meeting_date);
     formData.append("accessibility", data.accessibility);
@@ -297,9 +313,26 @@ const Create_Document1 = () => {
 
   //search
   const SearchData = (e) => {
-    console.log(e.target.value);
-    //e.preventDefault();
+  
+ 
     setsearchdata(e.target.value.toLowerCase());
+    const search = e.target.value;
+    if (search == "") {
+      getDataapicall();
+    } else {
+      const searchby_lowercase = search.toLowerCase();
+      axios
+        .get(`${BaseUrl}/documents/category/search/${searchby_lowercase}`)
+        .then((response) => {
+          console.log(response.data);
+          // console.log(response.data.data);
+          setdata("");
+          setdata(response.data.data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   //table
@@ -432,7 +465,7 @@ const Create_Document1 = () => {
                                   {categoryData.length > 0 && (
                                     <>
                                       {categoryData.map((row, index) => (
-                                        <option value={row.CATEGORY_NAME}>
+                                        <option value={row.ID}>
                                           {row.CATEGORY_NAME}
                                         </option>
                                       ))}

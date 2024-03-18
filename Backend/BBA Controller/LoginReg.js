@@ -21,9 +21,14 @@ LoginRegRouter.post("/reg", async function (req, res, next) {
     const visitor_user="select max(user_id) as user_id from users where usertype='public'";
     const visitor_user_result = await DBQuery(visitor_user);
     console.log("visitor_user_result",visitor_user_result)
-    if(visitor_user_result.length>0){
-      const ENTRY_USER=visitor_user_result[0].user_id+1;
-      const query = `INSERT INTO users(name,email,mobile,nidnumber,password,vcode,terminal_type,terminal_ip,usertype,user_id)VALUES('${req.body.username}','${req.body.email}','${req.body.mobile}','${req.body.nid}','${hasPassword}','${req.body.OTP}','${TERMINAL_TYPE}','${ip}','public','${ENTRY_USER}')`;
+    if(visitor_user_result[0].user_id!=null){
+      console.log("hittt",visitor_user_result[0].user_id)
+    
+      // const ENTRY_USER = Number(visitor_user_result[0].user_id) + 1;
+      const ENTRY_USER = visitor_user_result[0].user_id + 1;
+      console.log("ENTRY_USER", ENTRY_USER)
+      const query = `INSERT INTO users(name,email,mobile,nidnumber,password,vcode,terminal_type,terminal_ip,usertype,user_id,user_rule)VALUES('${req.body.username}','${req.body.email}','${req.body.mobile}','${req.body.nid}','${hasPassword}','${req.body.OTP}','${TERMINAL_TYPE}','${ip}','public','${ENTRY_USER}','Reader')`;
+      
       const result = await DBQuery(query);
       res.status(200).json({
         success: true,
@@ -33,7 +38,7 @@ LoginRegRouter.post("/reg", async function (req, res, next) {
     }
     else{
       const ENTRY_USER=1000;
-      const query = `INSERT INTO users(name,email,mobile,nidnumber,password,vcode,terminal_type,terminal_ip,usertype,user_id)VALUES('${req.body.username}','${req.body.email}','${req.body.mobile}','${req.body.nid}','${hasPassword}','${req.body.OTP}','${TERMINAL_TYPE}','${ip}','public','${ENTRY_USER}')`;
+      const query = `INSERT INTO users(name,email,mobile,nidnumber,password,vcode,terminal_type,terminal_ip,usertype,user_id,user_rule)VALUES('${req.body.username}','${req.body.email}','${req.body.mobile}','${req.body.nid}','${hasPassword}','${req.body.OTP}','${TERMINAL_TYPE}','${ip}','public','${ENTRY_USER}','Reader')`;
       // query = `INSERT INTO userlogin(ID,NAME,EMAIL,PASSWORD) VALUES(2,'ismayel','ismayelhossen123@gmail.com','0123');`;
       const result = await DBQuery(query);
       res.status(200).json({
@@ -78,13 +83,25 @@ console.log(isValidPassword)
             expiresIn: 6000 * 30,
           }
         );
-      
-       await res.status(200).json({
-            Success: true,
-          access_token: token,
-          message: "Login successfully",
+        //add data to loger table start
+        const ENTRY_USER=1000;
+        const ip = req.ip || req.remoteAddress;
+        // const ENTRY_USER = logInfo?.employe_id;
        
-          });
+        const TERMINAL_TYPE =  req.device?.type;;
+      const query = `INSERT INTO  logers (terminal_type,terminal_ip,user_id,user_rule)VALUES('${TERMINAL_TYPE}','${ip}','${findUser[0].user_id}','${findUser[0].user_rule}')`;
+      const savetoLoger = await DBQuery(query)
+      console.log("savetoLoger",savetoLoger)
+      if(savetoLoger.affectedRows){
+        res.status(200).json({
+          Success: true,
+        access_token: token,
+        message: "Login successfully",
+     
+        });
+      }
+      //add data to loger table end
+     
          
       } else {
        await res.status(200).json({

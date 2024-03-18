@@ -68,6 +68,7 @@ const DocumentList = () => {
       getDocument();
     } else {
       if (filter != "") {
+        // categories wise filter
         // setFilterSearch(e.target.value);
         axios
           .get(`${BaseUrl}/documents/all_documents_filter/${filter}`)
@@ -107,23 +108,23 @@ const DocumentList = () => {
   const SearchData = (e) => {
     //first of all  filter check
     // .replace(/[^\w]/gi, "");
-    const search = e.target.value;
+    const search = e.target.value.toLowerCase();
     setsearchdata(e.target.value);
     if (FilterSearch == "" && search == "") {
       getDocument();
     } else if (FilterSearch == "" && search != "") {
+    
       axios
         .get(`${BaseUrl}/documents/docslist`)
         .then((response) => {
-          console.log(response.data);
-          // console.log(response.data.data);
+        
           setdata("");
           setFilterSearch("");
           const AllgetaData = response.data.data;
 
           const sarchData = AllgetaData.filter((item) => {
             const row =
-              item.MEETING_DATE + " " + item.MEETING_ID + " " + item.NAME;
+              item.MEETING_DATE + " " + item.MEETING_ID + " " + item.NAME+" "+item.DOCUMENT_TAG+" " + item.FILENAME.split("_")[0] ;
             return row.toLowerCase().includes(search);
             // item.name.toLowerCase().includes(query)
           });
@@ -172,33 +173,7 @@ const DocumentList = () => {
     }
   };
 
-  //data delete
-  const DeleteIndividual = (id, filename) => {
-    // setvendorDeleteId(id, filename);
-    console.log(id);
 
-    swal({
-      title: "Are you sure want to delete?",
-      icon: "warning",
-      buttons: true,
-      dangerMode: true,
-    }).then(async (result) => {
-      if (result) {
-        const abc = await axios
-          .delete(`${BaseUrl}/documents/delete/docs/${id}/${filename}`)
-          .then((response) => {
-            if (response.data.success) {
-              getDocument();
-            }
-          })
-          .catch((error) => {
-            console.log(error);
-          });
-      } else {
-        swal("Record is not delete!");
-      }
-    });
-  };
 
   const getDataapicall = () => {
     axios.get(`${BaseUrl}/documents/docslist`).then((res) => {
@@ -327,7 +302,7 @@ const DocumentList = () => {
                         {categoryData.length > 0 && (
                           <>
                             {categoryData.map((row, index) => (
-                              <option value={row.CATEGORY_NAME}>
+                              <option value={row.ID}>
                                 {row.CATEGORY_NAME}
                               </option>
                             ))}

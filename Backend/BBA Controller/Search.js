@@ -3,8 +3,9 @@ const Search_Route = express.Router();
 const path = require("path");
 const multer = require("multer");
 const DBQuery = require("../Database/Query_Builder");
+const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsingjws");
 
-Search_Route.get("/search/:search", async function (req, res) {
+Search_Route.get("/search/:search",RouteCheckUsingJWT, async function (req, res) {
   const s = req.params;
   console.log(s);
   // const query = `SELECT*FROM documents where lower(name) like '%${s.search}%' OR meeting_id like '%${s.search}%' OR lower(datentime) like '%${s.search}%' OR lower(emp_id) like '%${s.search}%' `;
@@ -18,7 +19,7 @@ Search_Route.get("/search/:search", async function (req, res) {
 });
 
 Search_Route.get(
-  "/individual_documents_search/:search_value/:document_type",
+  "/individual_documents_search/:search_value/:document_type",RouteCheckUsingJWT,
   async function (req, res) {
     const { search_value, document_type } = req.params;
     console.log(document_type);
@@ -35,7 +36,7 @@ Search_Route.get(
 //search without filter
 
 Search_Route.get(
-  "/all_documents_search_withoutFilter/:search",
+  "/all_documents_search_withoutFilter/:search",RouteCheckUsingJWT,
   async function (req, res) {
     const s = req.params;
     console.log(s);
@@ -49,7 +50,7 @@ Search_Route.get(
   }
 );
 Search_Route.get(
-  "/all_documents_search/:search/:filter",
+  "/all_documents_search/:search/:filter",RouteCheckUsingJWT,
   async function (req, res) {
     const s = req.params;
     console.log(s);
@@ -62,10 +63,13 @@ Search_Route.get(
     });
   }
 );
-Search_Route.get("/all_documents_filter/:filter", async function (req, res) {
+Search_Route.get("/all_documents_filter/:filter",RouteCheckUsingJWT, async function (req, res) {
   const filter = req.params.filter;
   console.log(filter);
-  const query = `SELECT fileupload.*,documents.name,documents.meeting_date,documents.meeting_id FROM fileupload inner join documents on fileupload.documents_id=documents.id where documents.name='${filter}'     `;
+  const query = `SELECT category_name as NAME,fileupload.*,documents.MEETING_DATE,documents.MEETING_ID FROM fileupload 
+  inner join documents on fileupload.documents_id=documents.id
+  inner join category on category.id=documents.category_id
+   where documents.category_id='${filter}'     `;
   const result = await DBQuery(query);
   console.log(result);
   res.status(200).json({
@@ -76,7 +80,7 @@ Search_Route.get("/all_documents_filter/:filter", async function (req, res) {
 
 //category search
 
-Search_Route.get("/category/search/:search", async function (req, res) {
+Search_Route.get("/category/search/:search",RouteCheckUsingJWT, async function (req, res) {
   const s = req.params;
   console.log(s);
   // const query = `SELECT*FROM documents where lower(name) like '%${s.search}%' OR meeting_id like '%${s.search}%' OR lower(datentime) like '%${s.search}%' OR lower(emp_id) like '%${s.search}%' `;

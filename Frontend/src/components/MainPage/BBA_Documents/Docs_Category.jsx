@@ -227,7 +227,7 @@ const Docs_Category = () => {
 
   return (
     <>
-      {console.log("render344")}
+      
       <Helmet>
         <title>Dashboard - BBA Document </title>
         <meta name="description" content="BBA STORE" />

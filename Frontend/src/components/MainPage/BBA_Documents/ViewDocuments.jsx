@@ -348,10 +348,10 @@ const ViewDocuments = () => {
                               <td>{row.FILENAME.split("_")[0]}</td>
 
                               <td>
-                              {row.FILENAME}
+                            
                                 {row.FILENAME.split(".")[1] === "pdf" ? (
                                   <Link
-                                    to={`/docs/pdfview/${row.FILENAME}/${row.id}`}
+                                    to={`/docs/pdfview/${row.FILENAME}/${row.ID}`}
                                   >
                                     <i class="fa fa-book h3"></i>
                                   </Link>

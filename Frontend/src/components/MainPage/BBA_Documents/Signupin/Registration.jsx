@@ -67,9 +67,9 @@ const onSubmit = (data) => {
             //sms send  for librarian
             // LIB_GETREQUESTSMS
             if (response) {
-              fetch(
-                `https://eservice.bba.gov.bd/api/sms?mobile=${mobile}&apikey=$2a$12$X3ydCr5No7MfKe2aFNJriuVl5YIXQH3thNA.dD.eD0FOmSf92eP2O&message=${Msg}`
-              );
+              // fetch(
+              //   `https://eservice.bba.gov.bd/api/sms?mobile=${mobile}&apikey=$2a$12$X3ydCr5No7MfKe2aFNJriuVl5YIXQH3thNA.dD.eD0FOmSf92eP2O&message=${Msg}`
+              // );
              
             }
            
