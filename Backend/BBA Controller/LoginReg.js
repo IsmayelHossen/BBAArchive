@@ -104,9 +104,10 @@ console.log(isValidPassword)
         );
         //add data to loger table start
         const ENTRY_USER=1000;
-        const ip = req.ip || req.remoteAddress;
+        const parts = req.ip || req.remoteAddress;
         // const ENTRY_USER = logInfo?.employe_id;
-       
+        var ip = parts?.split(':');
+         ip = ip[ip.length - 1]
         const TERMINAL_TYPE =  req.device?.type;;
       const query = `INSERT INTO  logers (terminal_type,terminal_ip,user_id,user_rule)VALUES('${TERMINAL_TYPE}','${ip}','${findUser[0].user_id}','${findUser[0].user_rule}')`;
       const savetoLoger = await DBQuery(query)
@@ -134,7 +135,8 @@ console.log(isValidPassword)
         message: "Authentication failed user not found",
       });
     }
-  } catch {
+  } catch (error){
+    console.log(error)
     await res.status(401).json({
       error: "Authentication failed",
     });

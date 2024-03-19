@@ -24,9 +24,9 @@ const Dashboard = ({ alldata9 }) => {
 
   const getDataapicall = () => {
     axios.get(`${BaseUrl}/documents/getdata`).then((res) => {
-      setfileData(res.data.data);
+      setfileData(res?.data.data);
       setisLoader(false);
-      console.log(res.data.data);
+     
     });
   };
 
@@ -58,7 +58,7 @@ const Dashboard = ({ alldata9 }) => {
           <div className="page-header">
             <div className="row">
               <div className="col-sm-12">
-                <h3 className="page-title text-start">BBA Archive Dashboard</h3>
+                <h3 className="page-title text-start"> Welcome To BBA Archive(Dashboard)</h3>
               </div>
             </div>
           </div>
@@ -89,6 +89,7 @@ const Dashboard = ({ alldata9 }) => {
             </>
           )}
           {!isLoader && (
+           <>
             <div className="row">
               <div className=" col-md-6 ">
                 <div className="card dash-widget">
@@ -114,7 +115,7 @@ const Dashboard = ({ alldata9 }) => {
                         <i class="fa fa-object-group" aria-hidden="true"></i>
                       </span>
                       <div className="dash-widget-info">
-                        <h3>{Alldata.length}</h3>
+                        <h3>{Alldata?.length}</h3>
                         <span>Total Archive Category </span>
                         {Alldata != null &&
                           Alldata.map((row, index) => (
@@ -129,7 +130,8 @@ const Dashboard = ({ alldata9 }) => {
                   </div>
                 </div>
               </div>
-              <div className="row">
+              </div>
+              <div className="row mt-3">
                 {Alldata != null &&
                   Alldata.map((row, index) => (
                     <>
@@ -149,7 +151,8 @@ const Dashboard = ({ alldata9 }) => {
                     </>
                   ))}
               </div>
-            </div>
+          
+           </>
           )}
         </div>
         {/* /Page Content */}

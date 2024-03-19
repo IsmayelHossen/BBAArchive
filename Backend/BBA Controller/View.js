@@ -120,7 +120,7 @@ View_Route.get("/loger/view",RouteCheckUsingJWT, async function (req, res) {
 
   console.log(docTye);
   
-  const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id `;
+  const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id order by logers.id desc`;
 
   const result = await DBQuery(query);
   console.log(result);

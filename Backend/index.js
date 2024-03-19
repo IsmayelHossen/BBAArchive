@@ -11,6 +11,7 @@ const Delete_Route = require('./BBA Controller/Delete');
 const Update_Route = require('./BBA Controller/Update');
 const LoginRegRouter = require('./BBA Controller/LoginReg');
 const routes=express.Router({})
+const path = require('path'); // Import the path module
 const dotenv = require("dotenv");
 var cookieParser = require('cookie-parser')
 const device = require("express-device");
@@ -30,6 +31,12 @@ app.use((req, res, next) => {
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   next();
 });
+app.use(express.static(path.join(__dirname, 'build')));
+
+// app.get('*', (req, res) => {
+//   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+// });
+
 
 app.use('/documents', Search_Route);
 app.use('/documents', View_Route);
@@ -38,6 +45,10 @@ app.use("/documents",Delete_Route);
 app.use("/documents",Update_Route);
 app.use("/loginReg",LoginRegRouter);
 
+// front end live from this code
+// app.get('*', function (req, res) {
+//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
+// });
 
 app.listen(port, () => {
   console.log(`Example app listening on port' ${port}`)

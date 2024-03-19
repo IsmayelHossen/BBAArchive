@@ -71,7 +71,7 @@ const userData = JSON.parse(userDataString);
       console.log(res.data.data);
 
       const AllgetaData = [
-        ...new Map(res.data.data.map((m) => [m.NAME, m])).values(),
+        ...new Map(res?.data?.data.map((m) => [m.NAME, m])).values(),
       ];
       const sarchData = AllgetaData.filter((item) => {
         if (searchdata == "") {
@@ -377,7 +377,7 @@ const userData = JSON.parse(userDataString);
                   className="text-center mx-auto mb-3 text-uppercase fddd"
                   id="hddd"
                 >
-                  Welcome To BBA Archive
+                  BBA Archive
                 </h4>
               </div>
               {/* header */}
@@ -462,7 +462,7 @@ const userData = JSON.parse(userDataString);
                                   })}
                                 >
                                   <option value="">Select Type</option>
-                                  {categoryData.length > 0 && (
+                                  {categoryData?.length > 0 && (
                                     <>
                                       {categoryData.map((row, index) => (
                                         <option value={row.ID}>

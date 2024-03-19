@@ -16,7 +16,11 @@ function Header() {
     const userData = JSON.parse(userDataString);
     console.log("UserData",userData)
     const Logout=()=>{
-    
+      // axios.get(`${BaseUrl}/documents/get`).then((res) => {
+      //   console.log(res.data.data);
+      //   setDataLoader(false);
+      //   setcategoryData(res.data.data);
+      // });
       Cookies.remove('myCookie');
       localStorage.removeItem('userData');
       // Navigate("/");

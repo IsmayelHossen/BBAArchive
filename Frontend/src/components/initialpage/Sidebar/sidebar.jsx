@@ -34,114 +34,62 @@ const Sidebar = () => {
 
       <div className="sidebar-inner overflow-auto">
         <div id="sidebar-menu" className={`sidebar-menu `}>
-          <ul>
-         
-            <li className={pathname.includes("/") ? "" : ""}>
-              <a href="/">
-                <i className="la la-home" /> <span>Home</span>
-              </a>
-            </li>
-         
-
-<li className="submenu text-start">
-  <a href="#">
-    <i className="la la-gift" /> <span> Docs</span>{" "}
-    <span className="menu-arrow" />
-  </a>
-
-  <ul style={{ display: "none" }}>
-
-    <li>
-      <Link
-        className={pathname.includes("/docs") ? "active" : ""}
-        to="/docs"
-      >
-        <i className="la la-dashboard me-2" /> <span> Dashboard</span>
-      </Link>
-    </li>
-    {/* add Vendor */}
-    <li className="submenu text-start">
-      <a href="/docs">
-        <i class="fa fa-cog me-2" aria-hidden="true"></i> <span> Settings</span>{" "}
-        <span className="menu-arrow" />
-      </a>
-      <ul style={{ display: "none" }}>
-        <li>
-          <Link
-            className={
-              pathname.includes("/docs/category/add") ? "active" : ""
-            }
-            to="/docs/category/add"
-          >
-            Add New Category
-          </Link>
-        </li>
-        <li>
-          <Link
-            className={pathname.includes("/docs/Add") ? "active" : ""}
-            to="/docs/Add"
-          >
-            Add New Docs
-          </Link>
-        </li>
-      </ul>
-    </li>
-
-    {/* add product */}
-    <li className="submenu text-start">
-      <a href="#">
-        <i className="fa fa-folder mr-2" />{" "}
-        <span> Documents List</span> <span className="menu-arrow" />
-      </a>
-      <ul style={{ display: "none" }}>
-        <li>
-          <Link
-            className={
-              pathname.includes("/docs/list") ? "active" : ""
-            }
-            to="/docs/list"
-          >
-            View All Documents
-          </Link>
-        </li>
-      </ul>
-    </li>
-    <li>
-          <Link
-            className={
-              pathname.includes("/docs/loger") ? "active" : ""
-            }
-            to="/docs/loger"
-          >
-            Logs
-          </Link>
-        </li>
-    {/* <li className="submenu text-start">
-    <a href="#"> <span> Docuemnts Category</span> <span className="menu-arrow" /></a>
-    <ul style={{ display: 'none' }}>
-
-
+        <ul style={{ display: "" }}>
+  <li>
+    <Link className={pathname === "/docs" ? "active" : ""} to="/docs">
+      <i className="la la-dashboard me-2" /> <span> Dashboard</span>
+    </Link>
+  </li>
+  
+  {/* Settings */}
+  <li className="submenu text-start">
+    <a href="/docs">
+      <i className="fa fa-cog me-2" aria-hidden="true"></i> <span> Settings</span>{" "}
+      <span className="menu-arrow" />
+    </a>
+    <ul style={{ display: "none" }}>
       <li>
-        <Link className={pathname.includes('/docs/cat/personal') ? "active" : ""} to="/docs/cat/personal">
-          BBA
+        <Link className={pathname === "/docs/category/add" ? "active" : ""} to="/docs/category/add">
+          Add New Category
         </Link>
       </li>
-
       <li>
-        <Link className={pathname.includes('/docs/cat/others') ? "active" : ""} to="/docs/cat/others">
-          Others
+        <Link className={pathname === "/docs/Add" ? "active" : ""} to="/docs/Add">
+          Add New Docs
         </Link>
       </li>
-
-
-
-
     </ul>
-  </li> */}
+  </li>
 
-  </ul>
-</li>
+  {/* Documents List */}
+  <li className="submenu text-start">
+    <a href="#">
+      <i className="fa fa-folder mr-2" /> <span> Documents List</span> <span className="menu-arrow" />
+    </a>
+    <ul style={{ display: "none" }}>
+      <li>
+        <Link className={pathname === "/docs/list" ? "active" : ""} to="/docs/list">
+          View All Documents
+        </Link>
+      </li>
+    </ul>
+  </li>
+
+  {/* Audit Log */}
+  <li className="submenu text-start">
+    <a href="#">
+    <i className="fa fa-file-text fa-fw mr-2" /> <span> Audit Log</span> <span className="menu-arrow" />
+    </a>
+    <ul style={{ display: "none" }}>
+      <li>
+        <Link className={pathname === "/docs/loger" ? "active" : ""} to="/docs/loger">
+       Logs  
+        </Link>
+      </li>
+    </ul>
+  </li>
 </ul>
+
 
 
         </div>

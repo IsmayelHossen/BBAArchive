@@ -25,25 +25,7 @@ const Login = () => {
   };
 
 
-//   useEffect(() => {
-//     if (loginResult) {
-//       setIsLoading(false)
-//     }
 
-//   }, [loginResult, isLoading])
-
-  //const onSubmit = data => {
-    // setIsLoading(true)
-    // sessionStorage.setItem("redirect", true)
-    // data.user = userData;
-    // data.password = password;
-    // const visitId = sessionStorage.getItem("tok_v");
-    // loginAction({ user: data.user, password: data.password, visitor_id: visitId })
-    // setIsLoading(true)
-    // setUserData('')
-    // setPassword('')
-    // // navigate('/')
-  //}
   const onSubmit = (data) => {
 console.log("data",data)
 if (data.mobile.length !== 11) {
@@ -82,7 +64,8 @@ else{
       const decodedToken = jwtDecode(token);
       localStorage.setItem('userData', JSON.stringify(decodedToken));
   
-      window.location.href=('/docs/')
+      // window.location.href=('/docs/')
+      window.location.href=('/docs')
      
      
      
