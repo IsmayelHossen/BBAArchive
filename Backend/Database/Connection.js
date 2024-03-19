@@ -31,3 +31,12 @@ const Connection = async (req, res, next) => {
 };
 
 module.exports = Connection;
+// const visitor_user_mobile=`select*from users where mobile='${req.body.mobile}'`;
+// const visitor_user_mobile_result = await DBQuery(visitor_user_mobile);
+
+// if(visitor_user_mobile_result[0].mobile===req.body.mobile){
+//   res.status(200).json({
+//     Existmobile: true,
+//     message: "Already exist this number",
+//   }); 
+// }

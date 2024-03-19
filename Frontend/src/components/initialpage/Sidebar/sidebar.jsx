@@ -106,6 +106,16 @@ const Sidebar = () => {
         </li>
       </ul>
     </li>
+    <li>
+          <Link
+            className={
+              pathname.includes("/docs/loger") ? "active" : ""
+            }
+            to="/docs/loger"
+          >
+            Logs
+          </Link>
+        </li>
     {/* <li className="submenu text-start">
     <a href="#"> <span> Docuemnts Category</span> <span className="menu-arrow" /></a>
     <ul style={{ display: 'none' }}>

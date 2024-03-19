@@ -37,9 +37,11 @@ axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
         icon: "error",
         button: "Ok!",
       });
-    setTimeout(()=>{
-      window.location.href=('/')
-    },1000)
+      setTimeout(function() {
+        console.log("Session Out!");
+        window.location.href=('/')
+    }, 3000);
+   
     }
 
   return (

@@ -17,6 +17,8 @@ import PrivateRoute from "./components/MainPage/BBA_Documents/Auth/PrivateRoute"
 import { useAuth } from "./components/MainPage/BBA_Documents/Hooks/useAuth";
 import Registration from "./components/MainPage/BBA_Documents/Signupin/Registration";
 import Verify from "./components/MainPage/BBA_Documents/Signupin/Verify";
+import LoginTrack from "./components/MainPage/BBA_Documents/LoginTrack";
+
 
 
 function App() {
@@ -53,6 +55,7 @@ function App() {
                   element={<PdfView />}
                 />
                 <Route path="list" element={<DocumentList />} />
+                <Route path="loger" element={<LoginTrack />} />
                 </Route>
                 {!loginStatus &&
                 <>

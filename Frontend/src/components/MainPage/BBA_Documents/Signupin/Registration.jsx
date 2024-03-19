@@ -59,21 +59,37 @@ const onSubmit = (data) => {
             
           })
           .then((response) => {
-            if (response) {
+            console.log("response",response)
+            if(response.data.Existmobile==true){
+              swal({
+                title: "Already this mobile number is exists!",
+                icon: "error",
+                button: "Ok!",
+              });
+            }
+            else if(response.data.ExistNid==true){
+              swal({
+                title: "Already this nid number is exists!",
+                icon: "error",
+                button: "Ok!",
+              });
+            }
+            
+            else {
                 const mobile=data.mobile 
 
             const Msg = `BBA ARCHIVE:OTP is ${Otp}`;
            
             //sms send  for librarian
             // LIB_GETREQUESTSMS
-            if (response) {
-              // fetch(
-              //   `https://eservice.bba.gov.bd/api/sms?mobile=${mobile}&apikey=$2a$12$X3ydCr5No7MfKe2aFNJriuVl5YIXQH3thNA.dD.eD0FOmSf92eP2O&message=${Msg}`
-              // );
-             
+            if (response.data.success==true) {
+              fetch(
+                `https://eservice.bba.gov.bd/api/sms?mobile=${mobile}&apikey=$2a$12$X3ydCr5No7MfKe2aFNJriuVl5YIXQH3thNA.dD.eD0FOmSf92eP2O&message=${Msg}`
+              );
+              navigate('/verify/')
             }
            
-                navigate('/verify/')
+              
              
             }
           })

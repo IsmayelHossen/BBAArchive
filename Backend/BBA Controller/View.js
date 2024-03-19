@@ -115,4 +115,19 @@ View_Route.get("/getlastId/:docType",RouteCheckUsingJWT, async function (req, re
     data: result,
   });
 });
+View_Route.get("/loger/view",RouteCheckUsingJWT, async function (req, res) {
+  const docTye = req.params.docType;
+
+  console.log(docTye);
+  
+  const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id `;
+
+  const result = await DBQuery(query);
+  console.log(result);
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
+
 module.exports = View_Route;

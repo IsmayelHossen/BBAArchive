@@ -20,8 +20,26 @@ LoginRegRouter.post("/reg", async function (req, res, next) {
   
     const visitor_user="select max(user_id) as user_id from users where usertype='public'";
     const visitor_user_result = await DBQuery(visitor_user);
-    console.log("visitor_user_result",visitor_user_result)
-    if(visitor_user_result[0].user_id!=null){
+    const visitor_user_mobile = `select * from users where mobile='${req.body.mobile}'`;
+    const visitor_user_mobile_result = await DBQuery(visitor_user_mobile);
+    const user_nidnumber = `select * from users where nidnumber='${req.body.nid}'`;
+    const user__nidnumber_result = await DBQuery(user_nidnumber);
+    console.log("visitor_user_result",visitor_user_mobile_result[0]?.mobile)
+    if (visitor_user_mobile_result.length > 0) {
+      // Mobile number already exists
+      return res.status(200).json({
+          Existmobile: true,
+          message: "Mobile number already exists",
+      });
+  } 
+  else if (user__nidnumber_result.length > 0) {
+    console.log("NID already exists");
+    res.status(200).json({
+        ExistNid: true,
+        message: "NID number already exists",
+    });
+}
+  else if (visitor_user_result[0].user_id!=null){
       console.log("hittt",visitor_user_result[0].user_id)
     
       // const ENTRY_USER = Number(visitor_user_result[0].user_id) + 1;
@@ -48,7 +66,8 @@ LoginRegRouter.post("/reg", async function (req, res, next) {
       });
     }
 
-  } catch {
+  } catch(error) {
+    console.error("Error:", error);
     res.status(500).json({
       message: "Signup Failed",
     });
