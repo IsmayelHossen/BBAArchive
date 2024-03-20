@@ -21,7 +21,8 @@ import "../../assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.css";
 const Sidebar = () => {
   const location = useLocation();
   let pathname = location.pathname;
-
+  const userDataString = localStorage.getItem('userData');
+    const userData = JSON.parse(userDataString);
   return (
     <>
         <div className="sidebar" id="sidebar">
@@ -32,7 +33,7 @@ const Sidebar = () => {
 
    
 
-      <div className="sidebar-inner overflow-auto">
+      <div className="sidebar-inner sidebarinner_custom overflow-auto">
         <div id="sidebar-menu" className={`sidebar-menu `}>
         <ul style={{ display: "" }}>
   <li>
@@ -42,6 +43,7 @@ const Sidebar = () => {
   </li>
   
   {/* Settings */}
+  {userData.user_rule!='Reader' && userData.user_type!='public' && <>
   <li className="submenu text-start">
     <a href="/docs">
       <i className="fa fa-cog me-2" aria-hidden="true"></i> <span> Settings</span>{" "}
@@ -60,6 +62,8 @@ const Sidebar = () => {
       </li>
     </ul>
   </li>
+  </>}
+
 
   {/* Documents List */}
   <li className="submenu text-start">
@@ -78,12 +82,17 @@ const Sidebar = () => {
   {/* Audit Log */}
   <li className="submenu text-start">
     <a href="#">
-    <i className="fa fa-file-text fa-fw mr-2" /> <span> Audit Log</span> <span className="menu-arrow" />
+    <i class="fa fa-history"></i> <span> Audit Log</span> <span className="menu-arrow" />
     </a>
     <ul style={{ display: "none" }}>
       <li>
         <Link className={pathname === "/docs/loger" ? "active" : ""} to="/docs/loger">
        Logs  
+        </Link>
+      </li>
+      <li>
+        <Link className={pathname === "/docs/visitsinfo" ? "active" : ""} to="/docs/visitsinfo">
+       Visits Info
         </Link>
       </li>
     </ul>

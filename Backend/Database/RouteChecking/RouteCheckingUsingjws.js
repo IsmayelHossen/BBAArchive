@@ -7,13 +7,13 @@ const RouteCheckUsingJWT = (req, res, next) => {
     console.log("authorization",authorization)
     if(authorization){
     const token = authorization?.split(" ")[1];
-    console.log("token",token)
     const decoded = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
-    const { name, Email } = decoded;
+    const { name, Email ,user_id} = decoded;
     req.name = name;
     req.Email = Email;
-    console.log(Email);
-    console.log(name);
+    req.user_id=user_id;
+  
+ 
     next();
     }
 

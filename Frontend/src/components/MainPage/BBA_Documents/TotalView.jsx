@@ -12,7 +12,7 @@ import { BaseUrl } from "./CommonUrl";
 // import 'Assets/plugins/raphael/raphael.min.js';
 // import 'Assets/js/chart.js';
 
-const Dashboard = ({ alldata9 }) => {
+const TotalView = ({ alldata9 }) => {
   console.log(alldata9);
   const [Alldata, setdata] = useState([]);
   const [fileData, setfileData] = useState([]);
@@ -47,7 +47,7 @@ const Dashboard = ({ alldata9 }) => {
   return (
     <>
       <Helmet>
-        <title>Dashboard - BBA Documents</title>
+        <title>Visits Information - BBA Archive</title>
         <meta name="description" content="BBA DOCUMENTS" />
       </Helmet>
       {/* Header */}
@@ -58,7 +58,7 @@ const Dashboard = ({ alldata9 }) => {
           <div className="page-header">
             <div className="row">
               <div className="col-sm-12">
-                <h3 className="page-title text-start"> Welcome To BBA Archive(Dashboard)</h3>
+                <h3 className="page-title text-start">Visit Information</h3>
               </div>
             </div>
           </div>
@@ -91,38 +91,121 @@ const Dashboard = ({ alldata9 }) => {
           {!isLoader && (
            <>
             <div className="row">
-              <div className=" col-md-6 ">
+              <div className=" col-md-4 ">
                 <div className="card dash-widget">
                   <div className="card-body">
                     <Link to={`/docs/list`}>
                       <span className="dash-widget-icon">
-                        <i class="fa fa-file" aria-hidden="true"></i>
+                    
+                      <i class="fa fa-users"></i>
                       </span>
 
                       <div className="dash-widget-info">
                         <h3>{fileData.length}</h3>
-                        <span>Total Files</span>
+                        <span>Total Users</span>
                       </div>
                     </Link>
                   </div>
                 </div>
               </div>
-              <div className=" col-md-6">
+              <div className=" col-md-4">
                 <div className="card dash-widget">
                   <div className="card-body">
                     <Link to={"/docs/add"}>
                       <span className="dash-widget-icon">
-                        <i class="fa fa-object-group" aria-hidden="true"></i>
+                      <i class="fa fa-user"></i>
                       </span>
                       <div className="dash-widget-info">
                         <h3>{Alldata?.length}</h3>
-                        <span>Total  Category </span>
+                        <span>BBA Employees </span>
                         {Alldata != null &&
                           Alldata.map((row, index) => (
                             <>
-                              {/* <ul style={{listStyleType:'none'}}>
-             <li style={{display:"inline-block"}}>{row.name}</li>
-           </ul> */}
+                             
+                            </>
+                          ))}
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className=" col-md-4">
+                <div className="card dash-widget">
+                  <div className="card-body">
+                    <Link to={"/docs/add"}>
+                      <span className="dash-widget-icon">
+                      <i class="fa fa-user"></i>
+                      </span>
+                      <div className="dash-widget-info">
+                        <h3>{Alldata?.length}</h3>
+                        <span>Guest Users </span>
+                        {Alldata != null &&
+                          Alldata.map((row, index) => (
+                            <>
+                             
+                            </>
+                          ))}
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className=" col-md-4">
+                <div className="card dash-widget">
+                  <div className="card-body">
+                    <Link to={"/docs/add"}>
+                      <span className="dash-widget-icon">
+                      <i class="fa fa-user"></i>
+                      </span>
+                      <div className="dash-widget-info">
+                        <h3>{Alldata?.length}</h3>
+                        <span>Today Visitors: </span>
+                        {Alldata != null &&
+                          Alldata.map((row, index) => (
+                            <>
+                             
+                            </>
+                          ))}
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className=" col-md-4">
+                <div className="card dash-widget">
+                  <div className="card-body">
+                    <Link to={"/docs/add"}>
+                      <span className="dash-widget-icon">
+                      <i class="fa fa-user"></i>
+                      </span>
+                      <div className="dash-widget-info">
+                        <h3>{Alldata?.length}</h3>
+                        <span>Monthly Visitors: </span>
+                        {Alldata != null &&
+                          Alldata.map((row, index) => (
+                            <>
+                             
+                            </>
+                          ))}
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className=" col-md-4">
+                <div className="card dash-widget">
+                  <div className="card-body">
+                    <Link to={"/docs/add"}>
+                      <span className="dash-widget-icon">
+                      <i class="fa fa-download"></i>
+                      </span>
+                      <div className="dash-widget-info">
+                        <h3>{Alldata?.length}</h3>
+                        <span>Total Download </span>
+                        {Alldata != null &&
+                          Alldata.map((row, index) => (
+                            <>
+                             
                             </>
                           ))}
                       </div>
@@ -131,26 +214,7 @@ const Dashboard = ({ alldata9 }) => {
                 </div>
               </div>
               </div>
-              <div className="row mt-3">
-                {Alldata != null &&
-                  Alldata.map((row, index) => (
-                    <>
-                      <div className="col-md-4 ">
-                        <div className="card dash-widget">
-                          <div className="card-body">
-                            <span className="dash-widget-icon">
-                              <i class="fa fa-file-o" aria-hidden="true"></i>
-                            </span>
-                            <div className="dash-widget-info">
-                              <h3>{CategoryFileCount(row.CATEGORY_NAME)}</h3>
-                              <span>{row.CATEGORY_NAME}</span>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </>
-                  ))}
-              </div>
+           
           
            </>
           )}
@@ -161,4 +225,4 @@ const Dashboard = ({ alldata9 }) => {
   );
 };
 
-export default Dashboard;
+export default TotalView;

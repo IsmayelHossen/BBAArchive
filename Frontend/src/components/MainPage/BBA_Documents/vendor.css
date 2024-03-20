@@ -323,6 +323,14 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #fff;
 }
+.signup-form{
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: all .5s;
+}
+.signup-form:hover{
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+}
 .signup-form h2 {
   text-align: center;
   margin-bottom: 30px;
@@ -382,6 +390,34 @@ body {
 	left: 5px;
 	transform: translateY(-41%);
 	color: red;
+}
+.sidebarinner_custom{
+  background: #333
+}
+.sidebar-menu li a {
+	color: #fff;
+	display: block;
+	font-size: 15px;
+	height: auto;
+	padding: 0 20px;
+}
+.footer-custom {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+}
+.dash-widget{
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: all .5s;
+}
+.dash-widget:hover{
+  box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
 }
 
 /* login form end */

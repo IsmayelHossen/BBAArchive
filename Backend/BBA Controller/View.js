@@ -129,5 +129,36 @@ View_Route.get("/loger/view",RouteCheckUsingJWT, async function (req, res) {
     data: result,
   });
 });
+View_Route.get("/update/exitTime",RouteCheckUsingJWT, async function (req, res) {
+ 
+
+  console.log("req.user_id",req.user_id);
+  
+  const query = `SELECT*from logers where user_id=${req.user_id} order by id desc`;
+
+  const result = await DBQuery(query);
+  const currentDate = new Date();
+
+  // Extract the day, month, and year
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+  const year = currentDate.getFullYear();
+  
+  // Convert to Dhaka time zone
+  const options = { timeZone: 'Asia/Dhaka' };
+  const dhakaTime = currentDate.toLocaleString('en-US', { ...options, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' });
+  
+  // Format the date as "day-month-year" and time as "hour:minute:second AM/PM"
+  const formattedDateTime = `${day}-${month}-${year}, ${dhakaTime}`;
+  
+  console.log("Formatted DateTime:", formattedDateTime);
+  const Updatequery = `update logers set EXIT_TIME='${formattedDateTime}'  where id='${result[0]?.ID}'`;
+  const result2 = await DBQuery(Updatequery);
+  console.log(result2);
+  res.status(200).json({
+    success: true,
+   
+  });
+});
 
 module.exports = View_Route;

@@ -95,7 +95,8 @@ console.log(isValidPassword)
             Email: findUser[0].email,
             Nid: findUser[0].nidnumber,
             usertype:findUser[0].usertype,
-            user_id:findUser[0].user_id
+            user_id:findUser[0].user_id,
+            user_rule:findUser[0].user_rule
           },
           process.env.JWT_TOKEN_SECRET,
           {

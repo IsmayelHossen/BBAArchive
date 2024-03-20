@@ -9,22 +9,22 @@ import '../../assets/js/app';
 import Cookies from 'js-cookie';
 import swal from 'sweetalert';
 import axios from 'axios';
+import { BaseUrl } from '../../MainPage/BBA_Documents/CommonUrl';
 function Header() {
     
     const Navigate=useNavigate();
     const userDataString = localStorage.getItem('userData');
     const userData = JSON.parse(userDataString);
-    console.log("UserData",userData)
     const Logout=()=>{
-      // axios.get(`${BaseUrl}/documents/get`).then((res) => {
-      //   console.log(res.data.data);
-      //   setDataLoader(false);
-      //   setcategoryData(res.data.data);
-      // });
-      Cookies.remove('myCookie');
-      localStorage.removeItem('userData');
-      // Navigate("/");
-      window.location.href=('/')
+    axios.get(`${BaseUrl}/documents/update/exitTime`).then((res) => {
+       if(res.data.success==true){
+        Cookies.remove('myCookie');
+        localStorage.removeItem('userData');
+        // Navigate("/");
+        window.location.href=('/')
+       }
+      });
+    
            
     }
     const cookieValue = Cookies.get('myCookie');

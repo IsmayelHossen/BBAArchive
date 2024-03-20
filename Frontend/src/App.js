@@ -18,12 +18,16 @@ import { useAuth } from "./components/MainPage/BBA_Documents/Hooks/useAuth";
 import Registration from "./components/MainPage/BBA_Documents/Signupin/Registration";
 import Verify from "./components/MainPage/BBA_Documents/Signupin/Verify";
 import LoginTrack from "./components/MainPage/BBA_Documents/LoginTrack";
+import Footer from "./components/initialpage/Footer";
+import TotalView from "./components/MainPage/BBA_Documents/TotalView";
 
 
 
 function App() {
 
   const loginStatus=useAuth();
+  const userDataString = localStorage.getItem('userData');
+  const userData = JSON.parse(userDataString);
   return (
     <div className="App">
       <BrowserRouter>
@@ -38,7 +42,12 @@ function App() {
         <Routes>
            {/* document start */}
            <Route path="/docs/*" element={<PrivateRoute />} >
-           <Route path="" element={<Dashboard />} />
+           
+
+                 
+             {userData?.usertype=='private' && userData?.user_rule=='All' && <>
+             <Route path="" element={<Dashboard />} />
+
                 <Route path="add" element={<Create_Document1 />} />
                 <Route
                   path="type_wise_view/:type"
@@ -46,6 +55,9 @@ function App() {
                 />
                 <Route path="category/add" element={<Docs_Category />} />
 
+              
+                <Route path="loger" element={<LoginTrack />} />
+                <Route path="visitsinfo" element={<TotalView />} />
                 <Route
                   path="ViewDocuments/:id/:document_id"
                   element={<ViewDocuments />}
@@ -55,7 +67,20 @@ function App() {
                   element={<PdfView />}
                 />
                 <Route path="list" element={<DocumentList />} />
-                <Route path="loger" element={<LoginTrack />} />
+             </>}
+                   {/* public and read access authorization routes */}
+             {userData?.usertype=='public' && userData?.user_rule=='Reader' && <>
+             <Route path="" element={<Dashboard />} />
+             <Route
+                  path="ViewDocuments/:id/:document_id"
+                  element={<ViewDocuments />}
+                />
+                <Route
+                  path="pdfview/:name/:recordId"
+                  element={<PdfView />}
+                />
+                <Route path="list" element={<DocumentList />} />
+             </>}
                 </Route>
                 {!loginStatus &&
                 <>
@@ -70,6 +95,13 @@ function App() {
           
          
         </Routes>
+        {loginStatus &&
+      <>
+       
+        <Footer />
+      </>
+    
+     }
       </BrowserRouter>
     </div>
   );
