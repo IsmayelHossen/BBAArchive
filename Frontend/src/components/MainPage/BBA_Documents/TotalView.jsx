@@ -15,34 +15,37 @@ import { BaseUrl } from "./CommonUrl";
 const TotalView = ({ alldata9 }) => {
   console.log(alldata9);
   const [Alldata, setdata] = useState([]);
-  const [fileData, setfileData] = useState([]);
+  const [UsersData, setUsersData] = useState([]);
   const [isLoader, setisLoader] = useState(true);
+  const[todayvisitors,settodayvisitors]=useState([])
   useEffect(() => {
     getDataapicall();
-    getDocument();
+    getTodayVisitors();
   }, []);
 
   const getDataapicall = () => {
-    axios.get(`${BaseUrl}/documents/getdata`).then((res) => {
-      setfileData(res?.data.data);
+    axios.get(`${BaseUrl}/documents/getallusers`).then((res) => {
+        setUsersData(res?.data.data);
+        console.log("user",res?.data.data)
       setisLoader(false);
      
     });
   };
 
-  const getDocument = () => {
-    axios.get(`${BaseUrl}/documents/categorylist`).then((res) => {
-      setdata(res.data.data);
+  const getTodayVisitors = () => {
+    axios.get(`${BaseUrl}/documents/gettoday_visitore`).then((res) => {
+      settodayvisitors(res.data.data);
       setisLoader(false);
       console.log(res.data.data);
     });
   };
-  const CategoryFileCount = (category) => {
-    console.log(category);
-    const count = fileData.filter((data) => data.NAME == category);
-    console.log(count.length);
-    return count.length;
-  };
+
+    const privateUsers = UsersData?.filter((data) => data.usertype === 'private');
+    const publicUsers = UsersData?.filter((data) => data.usertype === 'public');
+
+   
+    
+  
   //tjhghj
   return (
     <>
@@ -101,7 +104,7 @@ const TotalView = ({ alldata9 }) => {
                       </span>
 
                       <div className="dash-widget-info">
-                        <h3>{fileData.length}</h3>
+                        <h3>{UsersData?.length}</h3>
                         <span>Total Users</span>
                       </div>
                     </Link>
@@ -116,14 +119,9 @@ const TotalView = ({ alldata9 }) => {
                       <i class="fa fa-user"></i>
                       </span>
                       <div className="dash-widget-info">
-                        <h3>{Alldata?.length}</h3>
+                        <h3>  {privateUsers.length}</h3>
                         <span>BBA Employees </span>
-                        {Alldata != null &&
-                          Alldata.map((row, index) => (
-                            <>
-                             
-                            </>
-                          ))}
+                     
                       </div>
                     </Link>
                   </div>
@@ -137,8 +135,24 @@ const TotalView = ({ alldata9 }) => {
                       <i class="fa fa-user"></i>
                       </span>
                       <div className="dash-widget-info">
-                        <h3>{Alldata?.length}</h3>
+                        <h3>  {publicUsers.length}</h3>
                         <span>Guest Users </span>
+                     
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className=" col-md-4">
+                <div className="card dash-widget">
+                  <div className="card-body">
+                    <Link to={"/docs/add"}>
+                      <span className="dash-widget-icon">
+                      <i class="fa fa-user"></i>
+                      </span>
+                      <div className="dash-widget-info">
+                        <h3>{todayvisitors?.length}</h3>
+                        <span>Today Visitors </span>
                         {Alldata != null &&
                           Alldata.map((row, index) => (
                             <>
@@ -159,28 +173,7 @@ const TotalView = ({ alldata9 }) => {
                       </span>
                       <div className="dash-widget-info">
                         <h3>{Alldata?.length}</h3>
-                        <span>Today Visitors: </span>
-                        {Alldata != null &&
-                          Alldata.map((row, index) => (
-                            <>
-                             
-                            </>
-                          ))}
-                      </div>
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              <div className=" col-md-4">
-                <div className="card dash-widget">
-                  <div className="card-body">
-                    <Link to={"/docs/add"}>
-                      <span className="dash-widget-icon">
-                      <i class="fa fa-user"></i>
-                      </span>
-                      <div className="dash-widget-info">
-                        <h3>{Alldata?.length}</h3>
-                        <span>Monthly Visitors: </span>
+                        <span>Monthly Visitors </span>
                         {Alldata != null &&
                           Alldata.map((row, index) => (
                             <>

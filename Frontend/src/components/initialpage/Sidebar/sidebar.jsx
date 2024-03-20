@@ -43,7 +43,7 @@ const Sidebar = () => {
   </li>
   
   {/* Settings */}
-  {userData.user_rule!='Reader' && userData.user_type!='public' && <>
+  {userData?.user_rule!='Reader' && userData?.user_type!='public' && <>
   <li className="submenu text-start">
     <a href="/docs">
       <i className="fa fa-cog me-2" aria-hidden="true"></i> <span> Settings</span>{" "}

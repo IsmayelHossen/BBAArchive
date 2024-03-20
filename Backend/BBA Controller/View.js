@@ -160,5 +160,39 @@ View_Route.get("/update/exitTime",RouteCheckUsingJWT, async function (req, res) 
    
   });
 });
+View_Route.get("/getallusers",RouteCheckUsingJWT, async function (req, res) {
+  const docTye = req.params.docType;
+
+  console.log(docTye);
+  
+  const query = `SELECT*from users order by id asc`;
+
+  const result = await DBQuery(query);
+  console.log(result);
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
+View_Route.get("/gettoday_visitore",RouteCheckUsingJWT, async function (req, res) {
+  const currentDate = new Date();
+
+  // Extract the day, month, and year
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+  const year = currentDate.getFullYear();
+  const todaydate=year+"-"+month+"-"+day
+
+  console.log("today",todaydate);
+  
+  const query = `SELECT distinct(terminal_ip) FROM logers  WHERE DATE(CREATED_AT) = '${todaydate}'`;
+
+  const result = await DBQuery(query);
+  console.log(result);
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
 
 module.exports = View_Route;
