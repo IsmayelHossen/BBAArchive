@@ -1,0 +1,635 @@
+Example app listening on port' 4123
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+getdata
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+[
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 1,
+    CATEGORY_ID: 2,
+    MEETING_ID: '1',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '18/3/2024, 11:33:56 AM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'abc_1710740036614.pdf',
+    DOCUMENTS_ID: 1,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 2,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '18/3/2024, 1:47:59 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710748079154.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 5,
+    CATEGORY_ID: 2,
+    MEETING_ID: '3',
+    MEETING_DATE: '01/03/2023',
+    DATENTIME: '18/3/2024, 2:13:02 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: 'hello',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866.pdf',
+    DOCUMENTS_ID: 6,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 6,
+    CATEGORY_ID: 2,
+    MEETING_ID: '2',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '19/3/2024, 12:48:11 PM',
+    EMP_ID: 1000,
+    DOCUMENT_TAG: 'pointer add',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710830891584.pdf',
+    DOCUMENTS_ID: 7,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 7,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '20/3/2024, 12:46:10 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866_1710917170040.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 2388569
+  }
+]
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+[
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 1,
+    CATEGORY_ID: 2,
+    MEETING_ID: '1',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '18/3/2024, 11:33:56 AM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'abc_1710740036614.pdf',
+    DOCUMENTS_ID: 1,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 2,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '18/3/2024, 1:47:59 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710748079154.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 5,
+    CATEGORY_ID: 2,
+    MEETING_ID: '3',
+    MEETING_DATE: '01/03/2023',
+    DATENTIME: '18/3/2024, 2:13:02 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: 'hello',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866.pdf',
+    DOCUMENTS_ID: 6,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 6,
+    CATEGORY_ID: 2,
+    MEETING_ID: '2',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '19/3/2024, 12:48:11 PM',
+    EMP_ID: 1000,
+    DOCUMENT_TAG: 'pointer add',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710830891584.pdf',
+    DOCUMENTS_ID: 7,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 7,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '20/3/2024, 12:46:10 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866_1710917170040.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 2388569
+  }
+]
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+undefined
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+today 2024-3-21
+[
+  RowDataPacket {
+    id: 7,
+    name: 'kamal',
+    email: 'kamal@gmail.com',
+    mobile: '01952152883',
+    designation: null,
+    password: '$2b$10$JyxkkymbeSWV4wA6JYmMfOeVBguAbvl40TMmnLYoNbWl4t08JVvHq',
+    vcode: 213409,
+    userverified: 1,
+    nidnumber: 1020301020,
+    user_id: 1000,
+    terminal_type: 'desktop',
+    terminal_ip: '::ffff:192.168.3.206',
+    activedeactive: 1,
+    date_creation: '0000-00-00 00:00:00',
+    usertype: 'public',
+    user_rule: 'Reader'
+  },
+  RowDataPacket {
+    id: 8,
+    name: 'salam',
+    email: 'salam@gmail.com',
+    mobile: '01323673048',
+    designation: null,
+    password: '$2b$10$83.GYlyYMvSO.P1O5uiTIubPrsBZyMjRA0dfEmi/s8.NYeNIPQZr6',
+    vcode: 937918,
+    userverified: 1,
+    nidnumber: 1020304051,
+    user_id: 1001,
+    terminal_type: 'desktop',
+    terminal_ip: '::ffff:192.168.3.206',
+    activedeactive: 1,
+    date_creation: '0000-00-00 00:00:00',
+    usertype: 'private',
+    user_rule: 'All'
+  }
+]
+[
+  RowDataPacket { terminal_ip: '192.168.3.206' },
+  RowDataPacket { terminal_ip: '192.168.3.204' },
+  RowDataPacket { terminal_ip: '192.168.168.64' }
+]
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+undefined
+[
+  RowDataPacket {
+    ID: 70,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.204',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-21T03:50:04.000Z,
+    EXIT_TIME: null,
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 69,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.204',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-21T03:40:11.000Z,
+    EXIT_TIME: '21-3-2024, 9:49:51 AM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 68,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-21T03:35:30.000Z,
+    EXIT_TIME: null,
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 67,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.168.64',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-21T03:33:30.000Z,
+    EXIT_TIME: null,
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 66,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.204',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-21T03:29:35.000Z,
+    EXIT_TIME: '21-3-2024, 9:39:52 AM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 65,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.204',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-21T03:24:29.000Z,
+    EXIT_TIME: null,
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 64,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-21T03:21:07.000Z,
+    EXIT_TIME: null,
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 63,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.204',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T09:15:15.000Z,
+    EXIT_TIME: null,
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 62,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.204',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T09:10:24.000Z,
+    EXIT_TIME: '20-3-2024, 3:14:47 PM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 61,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T09:04:23.000Z,
+    EXIT_TIME: null,
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 60,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.205',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-20T09:03:57.000Z,
+    EXIT_TIME: '20-3-2024, 3:04:14 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 59,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T08:32:42.000Z,
+    EXIT_TIME: '20-3-2024, 3:03:46 PM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 58,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T08:30:02.000Z,
+    EXIT_TIME: '20-3-2024, 2:32:26 PM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 57,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T06:07:13.000Z,
+    EXIT_TIME: '20-3-2024, 2:20:43 PM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 56,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-20T05:53:10.000Z,
+    EXIT_TIME: '20-3-2024, 12:04:01 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 55,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-20T05:12:09.000Z,
+    EXIT_TIME: '20-3-2024, 11:51:37 AM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 54,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-20T04:58:25.000Z,
+    EXIT_TIME: '20-3-2024, 11:11:53 AM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 53,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-19T09:27:29.000Z,
+    EXIT_TIME: null,
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 52,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T09:24:31.000Z,
+    EXIT_TIME: '19-3-2024, 3:27:20 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 51,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'All',
+    USER_ID: 1001,
+    CREATED_AT: 2024-03-19T09:14:29.000Z,
+    EXIT_TIME: '19-3-2024, 3:23:55 PM',
+    NAME: 'salam'
+  },
+  RowDataPacket {
+    ID: 50,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T09:08:39.000Z,
+    EXIT_TIME: '19-3-2024, 3:14:19 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 49,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T09:02:50.000Z,
+    EXIT_TIME: '19-3-2024, 3:08:31 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 48,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T09:01:17.000Z,
+    EXIT_TIME: '19-3-2024, 3:02:42 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 47,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T09:00:54.000Z,
+    EXIT_TIME: '19-3-2024, 3:01:07 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 46,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T09:00:11.000Z,
+    EXIT_TIME: '19-3-2024, 3:00:45 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 45,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T08:59:58.000Z,
+    EXIT_TIME: '19-3-2024, 3:00:03 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 44,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T08:57:13.000Z,
+    EXIT_TIME: '19-3-2024, 2:59:46 PM',
+    NAME: 'kamal'
+  },
+  RowDataPacket {
+    ID: 43,
+    TERMINAL_TYPE: 'desktop',
+    TERMINAL_IP: '192.168.3.206',
+    USER_RULE: 'Reader',
+    USER_ID: 1000,
+    CREATED_AT: 2024-03-19T08:56:48.000Z,
+    EXIT_TIME: '19-3-2024, 2:57:05 PM',
+    NAME: 'kamal'
+  }
+]
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+getdata
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+[
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 1,
+    CATEGORY_ID: 2,
+    MEETING_ID: '1',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '18/3/2024, 11:33:56 AM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'abc_1710740036614.pdf',
+    DOCUMENTS_ID: 1,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 2,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '18/3/2024, 1:47:59 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710748079154.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 5,
+    CATEGORY_ID: 2,
+    MEETING_ID: '3',
+    MEETING_DATE: '01/03/2023',
+    DATENTIME: '18/3/2024, 2:13:02 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: 'hello',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866.pdf',
+    DOCUMENTS_ID: 6,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 6,
+    CATEGORY_ID: 2,
+    MEETING_ID: '2',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '19/3/2024, 12:48:11 PM',
+    EMP_ID: 1000,
+    DOCUMENT_TAG: 'pointer add',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710830891584.pdf',
+    DOCUMENTS_ID: 7,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 7,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '20/3/2024, 12:46:10 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866_1710917170040.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 2388569
+  }
+]
+[
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 1,
+    CATEGORY_ID: 2,
+    MEETING_ID: '1',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '18/3/2024, 11:33:56 AM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'abc_1710740036614.pdf',
+    DOCUMENTS_ID: 1,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 2,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '18/3/2024, 1:47:59 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710748079154.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 5,
+    CATEGORY_ID: 2,
+    MEETING_ID: '3',
+    MEETING_DATE: '01/03/2023',
+    DATENTIME: '18/3/2024, 2:13:02 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: 'hello',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866.pdf',
+    DOCUMENTS_ID: 6,
+    F_SIZE: 2388569
+  },
+  RowDataPacket {
+    NAME: 'Technical',
+    ID: 6,
+    CATEGORY_ID: 2,
+    MEETING_ID: '2',
+    MEETING_DATE: '03/03/2024',
+    DATENTIME: '19/3/2024, 12:48:11 PM',
+    EMP_ID: 1000,
+    DOCUMENT_TAG: 'pointer add',
+    DOCTYPE: 'public',
+    FILENAME: 'pointer_1710830891584.pdf',
+    DOCUMENTS_ID: 7,
+    F_SIZE: 1214861
+  },
+  RowDataPacket {
+    NAME: 'Board Meeting12',
+    ID: 7,
+    CATEGORY_ID: 1,
+    MEETING_ID: '1',
+    MEETING_DATE: '13/03/2024',
+    DATENTIME: '20/3/2024, 12:46:10 PM',
+    EMP_ID: 1,
+    DOCUMENT_TAG: '',
+    DOCTYPE: 'public',
+    FILENAME: 'output_1710749582866_1710917170040.pdf',
+    DOCUMENTS_ID: 3,
+    F_SIZE: 2388569
+  }
+]
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo
+getdata
+Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoic2FsYW0iLCJFbWFpbCI6InNhbGFtQGdtYWlsLmNvbSIsIk5pZCI6MTAyMDMwNDA1MSwidXNlcnR5cGUiOiJwcml2YXRlIiwidXNlcl9pZCI6MTAwMSwidXNlcl9ydWxlIjoiQWxsIiwiaWF0IjoxNzEwOTkzMDA0LCJleHAiOjE3MTExNzMwMDR9.u189NGW_Evkt_BvnDy30nn-bCs4_SOE6lKAEKkYibKo

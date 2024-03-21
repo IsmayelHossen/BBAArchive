@@ -6,7 +6,7 @@ const Footer = () => {
             <div className=" footer-custom">
         {/* Page Content */}
         <div className="content container-fluid">
-            <h4>BBA-2024,All Right Reserved.</h4>
+            <h6>BBA-2024,All Right Reserved.</h6>
             </div>
             </div>
         </div>

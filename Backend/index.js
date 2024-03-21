@@ -36,8 +36,8 @@ app.use(express.static(path.join(__dirname, 'build')));
 // app.get('*', (req, res) => {
 //   res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 // });
-
-
+  // "start": "pm2 start index.js --name bakend2 --watch",
+  // "start": " pm2 start index.js --watch",
 app.use('/documents', Search_Route);
 app.use('/documents', View_Route);
 app.use('/documents', Create_Route);
