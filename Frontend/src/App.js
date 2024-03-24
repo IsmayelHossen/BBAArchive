@@ -20,6 +20,7 @@ import Verify from "./components/MainPage/BBA_Documents/Signupin/Verify";
 import LoginTrack from "./components/MainPage/BBA_Documents/LoginTrack";
 import Footer from "./components/initialpage/Footer";
 import TotalView from "./components/MainPage/BBA_Documents/TotalView";
+import ReportPage from "./components/MainPage/BBA_Documents/ReportPage";
 
 
 
@@ -67,6 +68,7 @@ function App() {
                   element={<PdfView />}
                 />
                 <Route path="list" element={<DocumentList />} />
+                <Route path="report" element={<ReportPage />} />
              </>}
                    {/* public and read access authorization routes */}
              {userData?.usertype=='public' && userData?.user_rule=='Reader' && <>
@@ -84,7 +86,7 @@ function App() {
                 </Route>
                 {!loginStatus &&
                 <>
-                 <Route path="/" element={<Login />} />
+                 <Route path="*" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/verify" element={<Verify />} />
                 </>

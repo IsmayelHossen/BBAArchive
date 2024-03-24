@@ -194,5 +194,107 @@ View_Route.get("/gettoday_visitore",RouteCheckUsingJWT, async function (req, res
     data: result,
   });
 });
+View_Route.get("/report/:reporttype",RouteCheckUsingJWT, async function (req, res) {
+  console.log(req.params.reporttype)
+  const currentDate = new Date();
 
+  // Extract the day, month, and year
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+  const year = currentDate.getFullYear();
+  const todaydate=year+"-"+month+"-"+day
+
+  console.log("today",todaydate);
+  // if(req.params.reporttype=="daywise"){
+  //  // const query = `SELECT distinct(terminal_ip) FROM logers  WHERE DATE(CREATED_AT) = '${todaydate}'`;
+  //  //SELECT DISTINCT terminal_ip FROM logers WHERE YEAR(CREATED_AT) = 2024 AND DAY(CREATED_AT) = 19; 
+  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} AND DAY(CREATED_AT) = ${day} order by logers.id desc`;
+  //   const result = await DBQuery(query);
+  //   console.log(result);
+  //   res.status(200).json({
+  //     success: true,
+  //     data: result,
+  //   });
+  // }
+  // else if(req.params.reporttype=="monthwise"){
+  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} AND MONTH(CREATED_AT) = ${month} order by logers.id desc`;
+  //   const result = await DBQuery(query);
+  //   console.log(result);
+  //   res.status(200).json({
+  //     success: true,
+  //     data: result,
+  //   });
+  // }
+  // else if(req.params.reporttype=="yearwise"){
+  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} order by logers.id desc`;
+  //   const result = await DBQuery(query);
+  //   console.log(result);
+  //   res.status(200).json({
+  //     success: true,
+  //     data: result,
+  //   });
+  // }
+ 
+    const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id order by logers.id desc`;
+    const result = await DBQuery(query);
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  
+
+});
+View_Route.get("/report/:datefrom/:dateto",RouteCheckUsingJWT, async function (req, res) {
+  console.log(req.params.datefrom)
+  console.log(req.params.dateto)
+  const currentDate = new Date();
+
+  // Extract the day, month, and year
+  const day = currentDate.getDate();
+  const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
+  const year = currentDate.getFullYear();
+  const todaydate=year+"-"+month+"-"+day
+
+  console.log("today",todaydate);
+  // if(req.params.reporttype=="daywise"){
+  //  // const query = `SELECT distinct(terminal_ip) FROM logers  WHERE DATE(CREATED_AT) = '${todaydate}'`;
+  //  //SELECT DISTINCT terminal_ip FROM logers WHERE YEAR(CREATED_AT) = 2024 AND DAY(CREATED_AT) = 19; 
+  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} AND DAY(CREATED_AT) = ${day} order by logers.id desc`;
+  //   const result = await DBQuery(query);
+  //   console.log(result);
+  //   res.status(200).json({
+  //     success: true,
+  //     data: result,
+  //   });
+  // }
+  // else if(req.params.reporttype=="monthwise"){
+  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} AND MONTH(CREATED_AT) = ${month} order by logers.id desc`;
+  //   const result = await DBQuery(query);
+  //   console.log(result);
+  //   res.status(200).json({
+  //     success: true,
+  //     data: result,
+  //   });
+  // }
+  // else if(req.params.reporttype=="yearwise"){
+  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} order by logers.id desc`;
+  //   const result = await DBQuery(query);
+  //   console.log(result);
+  //   res.status(200).json({
+  //     success: true,
+  //     data: result,
+  //   });
+  // }
+ 
+    const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id WHERE CREATED_AT BETWEEN '${req.params.datefrom}' AND '${req.params.dateto}' order by logers.id desc`;
+    const result = await DBQuery(query);
+    console.log(result);
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  
+
+});
 module.exports = View_Route;
