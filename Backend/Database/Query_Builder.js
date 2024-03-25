@@ -5,10 +5,11 @@ const DBQuery = async function db_query(query) {
   let connection = undefined;
   if (connection == undefined) {
     connection = mysql.createConnection({
-     host: 'localhost',
-  user: 'root',
-  password: '',
-     database: 'document',
+
+     host:process.env.HOST,
+  user:process.env.USER,
+  password:process.env.PASSWORD,
+     database:process.env.DATABASE,
     //  charset: 'utf8mb4'
     });
     await new Promise((resolve, reject) => {
