@@ -32,7 +32,10 @@ function Header() {
     const authToken = cookieValue;
 
 // Set default headers for all axios requests
-axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
+if(authToken){
+  axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
+}
+
     const location = useLocation();
      let pathname = location.pathname
      if(!cookieValue){
@@ -41,10 +44,10 @@ axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
         icon: "error",
         button: "Ok!",
       });
-      setTimeout(function() {
-        console.log("Session Out!");
-        window.location.href=('/')
-    }, 3000);
+    //   setTimeout(function() {
+    //     console.log("Session Out!");
+    //     window.location.href=('/')
+    // }, 3000);
    
     }
 

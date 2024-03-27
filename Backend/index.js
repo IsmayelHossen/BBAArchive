@@ -47,9 +47,9 @@ app.use("/documents",Update_Route);
 app.use("/loginReg",LoginRegRouter);
 
 // front end live from this code
-// app.get('*', function (req, res) {
-//   res.sendFile(path.join(__dirname, 'build', 'index.html'));
-// });
+app.get('*', function (req, res) {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening on port' ${port}`)

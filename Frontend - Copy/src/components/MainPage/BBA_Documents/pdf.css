@@ -1,0 +1,90 @@
+.react-pdf__Page__canvas {
+
+    max-width: 700px;
+    margin: 0 auto;
+
+    overflow: scroll;
+
+
+}
+
+.previous_page {
+    left: 3%;
+    position: absolute;
+    top: 50%;
+    transform: translate(24px, -50%);
+    z-index: 1;
+}
+
+.next_page {
+
+    position: absolute;
+    right: 3%;
+    top: 50%;
+    transform: translate(-24px, -50%);
+    z-index: 1;
+
+}
+
+.ebookMain_div {
+    width: 90%;
+    max-width: 100%;
+    position: "relative";
+    height: 750px;
+    overflow: auto;
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #e8e5e1;
+    box-shadow: 0px 2px 3px #595c60;
+    margin-top: .5em;
+    padding-top: 1px;
+    /* padding-left: 125px; */
+    padding-bottom: 2px;
+}
+
+.canvasclass {
+    width: fit-content !important;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    margin-top: .3em;
+}
+
+@media only screen and (max-width: 600px) {
+    .react-pdf__Page__canvas {
+
+        max-width: fit-content;
+        margin: 0 auto;
+
+        overflow: scroll;
+
+
+    }
+
+    .ebookMain_div {
+        width: fit-content;
+        max-width: 100%;
+        height: auto
+    }
+
+    .canvasclass {
+
+        max-width: 100%;
+        height: auto;
+
+    }
+
+    .previous_page {
+        left: 1%;
+
+    }
+
+    .next_page {
+
+
+        right: 1%;
+
+
+    }
+}

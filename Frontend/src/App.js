@@ -32,13 +32,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {loginStatus &&
+      {/* {loginStatus && */}
       <>
        <Header />
         <Sidebar />
       </>
     
-     }
+     {/* } */}
        
         <Routes>
            {/* document start */}
@@ -86,7 +86,8 @@ function App() {
                 </Route>
                 {!loginStatus &&
                 <>
-                 <Route path="*" element={<Login />} />
+                 <Route path="" element={<Dashboard />} />
+                 <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/verify" element={<Verify />} />
                 </>
