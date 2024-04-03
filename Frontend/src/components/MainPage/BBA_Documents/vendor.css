@@ -406,7 +406,7 @@ body {
 	bottom: 0;
 	color: #fff;
 	left: 0;
-	padding: 3px 0;
+	padding: 8px 0;
 	position: fixed;
 	text-align: center;
 	width: 100%;
@@ -417,29 +417,95 @@ body {
   display: block;
 }
 .dash-widget{
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+ 
   transition: all .5s;
 }
 .dash-widget:hover{
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
   transform: translateY(-5px);
 }
+.page-wrapper-publicDashboard{
+  left: 0;
+  margin-left: 10px;
+  padding-top: 10px;
+  position: relative;
+  transition: all 0.2s ease-in-out
+}
+.filecard{
+  background-color: #26A3C7;
+  border: 1px solid #26A3C7 !important;
+}
+.categorycard {
+	background-color: #978ED5;
+	border: 1px solid #9893C8;
+}
 
+
+.dash-widget-icon_public{
+  color: white;
+}
+.singlecategorycard {
+	border: 1px solid #A1B5BB;
+	background: linear-gradient(90deg,#C6D1D5 0,#26A3C7);
+}
+.dash-widget-icon {
+	background-color:white;
+	border-radius: 100%;
+	color: #667eea;
+	display: inline-block;
+	float: left;
+	font-size: 30px;
+	height: 60px;
+	line-height: 60px;
+	margin-right: 10px;
+	text-align: center;
+	width: 60px;
+}
+.pdtitle{
+  font-size: 1.875rem;
+}
+.pdnametitle{
+  font-size: 1.2rem;
+}
+.bbimagelogo{
+  width: 100px;
+  height: 100px;
+}
+.bdimagelogo{
+  width: 100px;
+  height: 100px;
+}
+.publicheader {
+	margin-top: 2rem;
+	margin-left: 1.8rem;
+	margin-right: 1.8rem;
+}
 /* login form end */
 /* media design */
 @media only screen and (max-width: 600px) {
+  .publicheader {
+    margin-top: .6rem;
+    margin-left: 0.1rem;
+    margin-right: .1rem;
+  }
   .create_vendor_page_title {
     text-align: center;
   }
-
-  .Purchase_Left_Side {
-    border-right: 0px solid #eaeaea;
-    margin: 0px;
-    padding: 0px;
-    /* box-shadow: 0px 1px 2px #d9d9d9; */
-    /* padding-left: 9px; */
-    padding: 2px 2px;
+  .pdtitle{
+    font-size: 1.25rem;
   }
+  .pdnametitle{
+    font-size: 1rem;
+  }
+  .bbimagelogo{
+    width: 60px;
+    height: 60px;
+  }
+  .bdimagelogo{
+    width: 60px;
+    height: 60px;
+  }
+
 
   .displayflex {
     display: flex;

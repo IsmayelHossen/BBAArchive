@@ -18,9 +18,11 @@ const TotalView = ({ alldata9 }) => {
   const [UsersData, setUsersData] = useState([]);
   const [isLoader, setisLoader] = useState(true);
   const[todayvisitors,settodayvisitors]=useState([])
+  const[totalreadDownload,settotalreadDownload]=useState([])
   useEffect(() => {
     getDataapicall();
     getTodayVisitors();
+    getTotalReadDownload();
   }, []);
 
   const getDataapicall = () => {
@@ -39,12 +41,19 @@ const TotalView = ({ alldata9 }) => {
       console.log(res.data.data);
     });
   };
-
+  const getTotalReadDownload = () => {
+    axios.get(`${BaseUrl}/documents/get/totalread_download`).then((res) => {
+      settotalreadDownload(res.data.data);
+      setisLoader(false);
+      console.log(res.data.data);
+    });
+  };
+  
     const privateUsers = UsersData?.filter((data) => data.usertype === 'private');
     const publicUsers = UsersData?.filter((data) => data.usertype === 'public');
 
-   
-    
+    const TotalRead = totalreadDownload?.filter((data) => data.process_type === 'Reading');
+    const TotalDownload = totalreadDownload?.filter((data) => data.process_type === 'Download');
   
   //tjhghj
   return (
@@ -97,7 +106,7 @@ const TotalView = ({ alldata9 }) => {
               <div className=" col-md-4 ">
                 <div className="card dash-widget">
                   <div className="card-body">
-                    <Link to={`/docs/list`}>
+                    <Link to={`/docs/usershow`}>
                       <span className="dash-widget-icon">
                     
                       <i class="fa fa-users"></i>
@@ -114,7 +123,7 @@ const TotalView = ({ alldata9 }) => {
               <div className=" col-md-4">
                 <div className="card dash-widget">
                   <div className="card-body">
-                    <Link to={"/docs/add"}>
+                  <a href="#">
                       <span className="dash-widget-icon">
                       <i class="fa fa-user"></i>
                       </span>
@@ -123,14 +132,14 @@ const TotalView = ({ alldata9 }) => {
                         <span>BBA Employees </span>
                      
                       </div>
-                    </Link>
+                  </a>
                   </div>
                 </div>
               </div>
               <div className=" col-md-4">
                 <div className="card dash-widget">
                   <div className="card-body">
-                    <Link to={"/docs/add"}>
+                  <a href="#">
                       <span className="dash-widget-icon">
                       <i class="fa fa-user"></i>
                       </span>
@@ -139,14 +148,14 @@ const TotalView = ({ alldata9 }) => {
                         <span>Guest Users </span>
                      
                       </div>
-                    </Link>
+                      </a>
                   </div>
                 </div>
               </div>
               <div className=" col-md-4">
                 <div className="card dash-widget">
                   <div className="card-body">
-                    <Link to={"/docs/add"}>
+                    <Link to={"/docs/loger"}>
                       <span className="dash-widget-icon">
                       <i class="fa fa-user"></i>
                       </span>
@@ -167,7 +176,7 @@ const TotalView = ({ alldata9 }) => {
               <div className=" col-md-4">
                 <div className="card dash-widget">
                   <div className="card-body">
-                    <Link to={"/docs/add"}>
+                    <Link to={"/docs/report"}>
                       <span className="dash-widget-icon">
                       <i class="fa fa-user"></i>
                       </span>
@@ -188,19 +197,30 @@ const TotalView = ({ alldata9 }) => {
               <div className=" col-md-4">
                 <div className="card dash-widget">
                   <div className="card-body">
-                    <Link to={"/docs/add"}>
+                    <Link to={"/docs/readdownload/download"}>
                       <span className="dash-widget-icon">
                       <i class="fa fa-download"></i>
                       </span>
                       <div className="dash-widget-info">
-                        <h3>{Alldata?.length}</h3>
+                        <h3>{TotalDownload?.length}</h3>
                         <span>Total Download </span>
-                        {Alldata != null &&
-                          Alldata.map((row, index) => (
-                            <>
-                             
-                            </>
-                          ))}
+                       
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+              <div className=" col-md-4">
+                <div className="card dash-widget">
+                  <div className="card-body">
+                    <Link to={"/docs/readdownload/read"}>
+                      <span className="dash-widget-icon">
+                      <i class="fa fa-book"></i>
+                      </span>
+                      <div className="dash-widget-info">
+                        <h3>{TotalRead?.length}</h3>
+                        <span>Online Read </span>
+                       
                       </div>
                     </Link>
                   </div>

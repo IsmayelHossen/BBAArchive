@@ -1,12 +1,16 @@
 import React from 'react';
 
 const Footer = () => {
+    const currentDate = new Date();
+
+// Get the current year using the getFullYear() method
+const currentYear = currentDate.getFullYear();
     return (
         <div>
             <div className=" footer-custom">
         {/* Page Content */}
         <div className="content container-fluid">
-            <h6>BBA-2024,All Right Reserved.</h6>
+        <h6>©-{currentYear},Bangladesh Bridge Authority,All Rights Reserved.</h6>
             </div>
             </div>
         </div>

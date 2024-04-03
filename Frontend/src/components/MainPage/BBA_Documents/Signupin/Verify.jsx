@@ -4,8 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { BaseUrl } from '../CommonUrl';
 import swal from 'sweetalert';
-import { headerlogo } from '../../../Entryfile/imagepath';
-
+import BBAImage from '../../../assets/img/BBA-logo.png';
 const Verify = () => {
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const navigate = useNavigate();
@@ -17,7 +16,7 @@ const Verify = () => {
               .then((response) => {
              
                 if (response.data.success==true) {
-                    navigate('/')
+                    navigate('/login')
                  
                 }
                 else{
@@ -36,7 +35,7 @@ const Verify = () => {
 
 <div className="container mt-5">
 <div className="company-info">
-  <img src={`${headerlogo}`} alt="Company Logo" className="company-logo img-fluid" />
+  <img src={`${BBAImage}`} alt="BBA Archive" className="company-logo img-fluid" />
   <h1 className="company-name">BBA Archive</h1>
 </div>
   <div className="signup-form">

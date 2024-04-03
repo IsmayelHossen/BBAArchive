@@ -1,9 +1,6 @@
 import React from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import {
-  Avatar_02, Avatar_03, Avatar_05,
-  Avatar_06, Avatar_08, Avatar_09, Avatar_13, Avatar_17, Avatar_21, headerlogo
-} from '../../Entryfile/imagepath';
+import BBAImage from '../../assets/img/BBA-logo.png';
 
 import '../../assets/js/app';
 import Cookies from 'js-cookie';
@@ -32,10 +29,7 @@ function Header() {
     const authToken = cookieValue;
 
 // Set default headers for all axios requests
-if(authToken){
-  axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
-}
-
+axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
     const location = useLocation();
      let pathname = location.pathname
      if(!cookieValue){
@@ -44,10 +38,10 @@ if(authToken){
         icon: "error",
         button: "Ok!",
       });
-    //   setTimeout(function() {
-    //     console.log("Session Out!");
-    //     window.location.href=('/')
-    // }, 3000);
+      setTimeout(function() {
+        console.log("Session Out!");
+        window.location.href=('/')
+    }, 3000);
    
     }
 
@@ -59,7 +53,7 @@ if(authToken){
          {/* Logo */}
          <div className="header-left">
            <Link to="/" className="logo">
-             <img src={headerlogo} width={40} height={40} alt="" />
+             <img src={BBAImage} width={40} height={40} alt="" />
            </Link>
          </div>
          {/* /Logo */}
@@ -128,7 +122,7 @@ if(authToken){
            {/* /Message Notifications */}
            <li className="nav-item dropdown has-arrow main-drop">
              <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-               <span className="user-img"><img src={Avatar_21} alt="" />
+               <span className="user-img"><img  alt="logo" />
                  <span className="status online" /></span>
                <span>{userData?.name}</span>
              </a>

@@ -198,6 +198,45 @@ const DocumentList = () => {
   const OnlyPdfFileRead = () => {
     swal("Only Pdf file you can read!", "", "warning");
   };
+  const ReadingPost=(type,categoryid,filename,doc_id)=>{
+console.log()
+const data={
+  type,
+  categoryid,
+  filename,
+  doc_id
+}
+axios.post(`${BaseUrl}/documents/read_download/add`, data).then((response) => {
+  if (response) {
+  
+   
+  }
+})}
+const DownloadPost = (type, categoryid, filename, doc_id) => {
+  // Construct the URL of the file to download
+  const fileUrl = `${BaseUrl}/uploadDoc/${filename}`;
+
+  // Set window.location.href to initiate the file download
+  window.location.href = fileUrl;
+
+  // Prepare data for the POST request (if needed)
+  const data = {
+    type,
+    categoryid,
+    filename,
+    doc_id
+  };
+
+  // Example: POST request using Axios to update download count
+  axios.post(`${BaseUrl}/documents/read_download/add`, data)
+    .then((response) => {
+      // Handle response if needed
+    })
+    .catch((error) => {
+      // Handle error if needed
+    });
+};
+
   const columns = [
     {
       title: "Entry Date",
@@ -230,7 +269,7 @@ const DocumentList = () => {
       render: (text, rowKey) => (
         <>
           {rowKey.FILENAME.split(".")[1] === "pdf" ? (
-            <Link to={`/docs/pdfView/${rowKey.FILENAME}/${rowKey.ID}`}>
+            <Link  onClick={()=>ReadingPost('Reading',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}  to={`/docs/pdfView/${rowKey.FILENAME}/${rowKey.ID}`}>
               <i class="fa fa-book h3"></i>
             </Link>
           ) : (
@@ -245,18 +284,18 @@ const DocumentList = () => {
       title: "Download",
       render: (text, rowKey) => (
         <>
-          <a
-            href={`${BaseUrl}/uploadDoc/${rowKey.FILENAME}`}
-            // href="http://localhost:3000/72.pdf"
-            class="btn btn-primary btn-sm mr-2"
-            download
-          >
-            <span class="fa fa-download"></span>({" "}
-            {rowKey.F_SIZE / 1024 > 1023
-              ? (rowKey.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
-              : Math.ceil(rowKey.F_SIZE / 1024) + " kb"}
-            )
-          </a>
+        <p style={{cursor:" pointer"}}  onClick={()=>DownloadPost('Download',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}>
+         
+        
+          <span class="fa fa-download"></span>({" "}
+          {rowKey.F_SIZE / 1024 > 1023
+            ? (rowKey.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
+            : Math.ceil(rowKey.F_SIZE / 1024) + " kb"}
+          )
+        </p>
+     
+          
+          
         </>
       ),
     },

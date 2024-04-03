@@ -73,10 +73,13 @@ const Docs_Category = () => {
   const onSubmit = (data) => {
     console.log(data);
     axios.post(`${BaseUrl}/documents/category/add`, data).then((response) => {
-      if (response) {
+      if (response.data.success ){
         console.log(response.data.data);
         window.$("#exampleModal").modal("hide");
         getDataapicall();
+      }
+      if(response.data.success==false ){
+        swal("Already this category exist","","warning")
       }
     });
   };

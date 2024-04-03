@@ -254,7 +254,7 @@ const Create_Document = () => {
         <>
           <Link
             className="btn btn-success btn-sm"
-            to={`/docs/viewDocuments/${record.ID}/${record.MEETING_ID}`}
+            to={`/docs/viewDocuments/${record.ID}/${record.MEETING_ID}/${record.CATEGORY_ID}`}
           >
             <span class="fa fa-eye"></span>
           </Link>

@@ -135,14 +135,7 @@ const PdfView = () => {
                     </p>
                   </div>
                   <div style={{ display: "block ruby" }}>
-                    <a
-                      href={`${BaseUrl}/uploadDoc/${useParam.name}`}
-                      // href="http://localhost:3000/72.pdf"
-                      class="btn btn-primary btn-sm mr-2"
-                      download
-                    >
-                      <i class="fa fa-download" aria-hidden="true"></i>
-                    </a>
+               
                     {fullscreenbutoon && (
                       <button
                         class="btn btn-success btn-sm mr-2"

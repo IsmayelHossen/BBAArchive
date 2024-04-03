@@ -21,6 +21,10 @@ import LoginTrack from "./components/MainPage/BBA_Documents/LoginTrack";
 import Footer from "./components/initialpage/Footer";
 import TotalView from "./components/MainPage/BBA_Documents/TotalView";
 import ReportPage from "./components/MainPage/BBA_Documents/ReportPage";
+import PublicDashboard from "./components/MainPage/BBA_Documents/Publiccomponent/PublicDashboard";
+import UsersShow from "./components/MainPage/BBA_Documents/UsersShow";
+import ReadDownload from "./components/MainPage/BBA_Documents/ReadDownload";
+import PublicDocumentList from "./components/MainPage/BBA_Documents/Publiccomponent/PublicDocumentList";
 
 
 
@@ -32,13 +36,13 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-      {/* {loginStatus && */}
+      {loginStatus &&
       <>
        <Header />
         <Sidebar />
       </>
     
-     {/* } */}
+     }
        
         <Routes>
            {/* document start */}
@@ -46,7 +50,7 @@ function App() {
            
 
                  
-             {userData?.usertype=='private' && userData?.user_rule=='All' && <>
+             {userData?.usertype=='private' && userData?.user_rule=='Admin' && <>
              <Route path="" element={<Dashboard />} />
 
                 <Route path="add" element={<Create_Document1 />} />
@@ -60,21 +64,56 @@ function App() {
                 <Route path="loger" element={<LoginTrack />} />
                 <Route path="visitsinfo" element={<TotalView />} />
                 <Route
-                  path="ViewDocuments/:id/:document_id"
+                  path="ViewDocuments/:id/:document_id/:category"
                   element={<ViewDocuments />}
                 />
                 <Route
                   path="pdfview/:name/:recordId"
                   element={<PdfView />}
                 />
-                <Route path="list" element={<DocumentList />} />
+                 <Route
+                  path="readdownload/:type"
+                  element={<ReadDownload />}
+                />
+               
+               <Route path="list" element={<DocumentList />} />
                 <Route path="report" element={<ReportPage />} />
+                <Route path="usershow" element={<UsersShow/>} />
+                
+             </>}
+             {userData?.usertype=='private' && userData?.user_rule=='All' && <>
+             <Route path="" element={<Dashboard />} />
+
+                <Route path="add" element={<Create_Document1 />} />
+                <Route
+                  path="type_wise_view/:type"
+                  element={<Create_Document />}
+                />
+                <Route path="category/add" element={<Docs_Category />} />
+
+                <Route path="list" element={<DocumentList />} />
+               
+                <Route
+                  path="ViewDocuments/:id/:document_id/:category"
+                  element={<ViewDocuments />}
+                />
+                <Route
+                  path="pdfview/:name/:recordId"
+                  element={<PdfView />}
+                />
+                 <Route
+                  path="readdownload/:type"
+                  element={<ReadDownload />}
+                />
+               
+               
+                
              </>}
                    {/* public and read access authorization routes */}
              {userData?.usertype=='public' && userData?.user_rule=='Reader' && <>
              <Route path="" element={<Dashboard />} />
              <Route
-                  path="ViewDocuments/:id/:document_id"
+                  path="ViewDocuments/:id/:document_id/:category"
                   element={<ViewDocuments />}
                 />
                 <Route
@@ -86,7 +125,8 @@ function App() {
                 </Route>
                 {!loginStatus &&
                 <>
-                 <Route path="" element={<Dashboard />} />
+                 <Route path="*" element={<PublicDashboard />} />
+                 <Route path="/docs/list" element={<PublicDocumentList />} />
                  <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/verify" element={<Verify />} />

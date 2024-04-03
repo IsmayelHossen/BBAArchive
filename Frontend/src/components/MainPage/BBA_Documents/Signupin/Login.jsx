@@ -8,6 +8,7 @@ import {jwtDecode} from 'jwt-decode';
 import { BaseUrl } from "../CommonUrl";
 // import useAuth from "./hooks/useAuth";
 import { headerlogo } from '../../../Entryfile/imagepath'
+import BBAImage from '../../../assets/img/BBA-logo.png';
 import swal from "sweetalert";
 import Cookies from "js-cookie";
 const Login = () => {
@@ -192,7 +193,7 @@ else{
         }
 <div className="container mt-5">
 <div className="company-info">
-  <img src={`${headerlogo}`} alt="Company Logo" className="company-logo img-fluid" />
+  <img src={`${BBAImage}`} alt="BBA Archive" className="company-logo img-fluid" />
   <h1 className="company-name">BBA Archive</h1>
 </div>
   <div className="signup-form">

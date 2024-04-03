@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from 'react-router-dom';
-import { headerlogo, logo } from '../../../Entryfile/imagepath';
+import BBAImage from '../../../assets/img/BBA-logo.png';
 import LogInHeader from "./LoginHeader";
 import axios from "axios";
 import { BaseUrl } from "../CommonUrl";
@@ -111,7 +111,7 @@ const onSubmit = (data) => {
 
 <div className="container mt-5">
 <div className="company-info">
-  <img src={`${headerlogo}`} alt="Company Logo" className="company-logo img-fluid" />
+  <img src={`${BBAImage}`} alt="BBA Archive" className="company-logo img-fluid" />
   <h1 className="company-name">BBA Archive</h1>
 </div>
   <div className="signup-form">

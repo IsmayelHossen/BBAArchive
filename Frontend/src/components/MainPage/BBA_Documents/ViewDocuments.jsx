@@ -45,6 +45,7 @@ const ViewDocuments = () => {
   const getDocuments = () => {
     axios.get(`${BaseUrl}/documents/filedata/${useParam.id}`).then((res) => {
       setDataLoader(false);
+      console.log(res.data.data)
       setfileData(res.data.data);
     });
   };
@@ -155,6 +156,45 @@ const ViewDocuments = () => {
   const OnlyPdfFileRead = () => {
     swal("Only Pdf file you can read!", "", "warning");
   };
+  const ReadingPost=(type,categoryid,filename,doc_id)=>{
+    console.log()
+    const data={
+      type,
+      categoryid:useParam.category,
+      filename,
+      doc_id
+    }
+    axios.post(`${BaseUrl}/documents/read_download/add`, data).then((response) => {
+      if (response) {
+      
+       
+      }
+    })}
+    const DownloadPost = (type, categoryid, filename, doc_id) => {
+      // Construct the URL of the file to download
+      const fileUrl = `${BaseUrl}/uploadDoc/${filename}`;
+    
+      // Set window.location.href to initiate the file download
+      window.location.href = fileUrl;
+    
+      // Prepare data for the POST request (if needed)
+      const data = {
+        type,
+        categoryid:useParam.category,
+        filename,
+        doc_id
+      };
+    
+      // Example: POST request using Axios to update download count
+      axios.post(`${BaseUrl}/documents/read_download/add`, data)
+        .then((response) => {
+          // Handle response if needed
+        })
+        .catch((error) => {
+          // Handle error if needed
+        });
+    };
+    
   return (
     <>
       {console.log("render344")}
@@ -350,11 +390,10 @@ const ViewDocuments = () => {
                               <td>
                             
                                 {row.FILENAME.split(".")[1] === "pdf" ? (
-                                  <Link
-                                    to={`/docs/pdfview/${row.FILENAME}/${row.ID}`}
-                                  >
-                                    <i class="fa fa-book h3"></i>
-                                  </Link>
+                                 
+                                   <Link  onClick={()=>ReadingPost('Reading',row.CATEGORY_ID,row.FILENAME,row.DOCUMENTS_ID)}  to={`/docs/pdfView/${row.FILENAME}/${row.ID}`}>
+                                   <i class="fa fa-book h3"></i>
+                                 </Link>
                                 ) : (
                                   <a onClick={OnlyPdfFileRead}>
                                     <i class="fa fa-book h3"></i>
@@ -362,20 +401,15 @@ const ViewDocuments = () => {
                                 )}
                               </td>
                               <td>
-                                <a
-                                  href={`${BaseUrl}/uploadDoc/${row.FILENAME}`}
-                                  // href="http://localhost:3000/72.pdf"
-                                  class="btn btn-primary btn-sm mr-2"
-                                  download
-                                >
-                                  <span class="fa fa-download"></span>({" "}
-                                  {row.F_SIZE / 1024 > 1023
-                                    ? (row.F_SIZE / 1024 / 1024).toPrecision(
-                                      3
-                                    ) + " mb"
-                                    : Math.ceil(row.F_SIZE / 1024) + " kb"}
-                                  )
-                                </a>
+                              <p style={{cursor:" pointer"}}  onClick={()=>DownloadPost('Download',row.CATEGORY_ID,row.FILENAME,row.DOCUMENTS_ID)}>
+         
+        
+         <span class="fa fa-download"></span>({" "}
+         {row.F_SIZE / 1024 > 1023
+           ? (row.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
+           : Math.ceil(row.F_SIZE / 1024) + " kb"}
+         )
+       </p>
                               </td>
                               <td className="">
                                 <a
