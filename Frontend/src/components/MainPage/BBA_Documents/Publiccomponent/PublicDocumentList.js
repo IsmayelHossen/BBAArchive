@@ -17,6 +17,7 @@ import "../../BBA_Documents/vendor.css";
 import { BaseUrl } from "./../CommonUrl";
 import { ColorRing, LineWave } from "react-loader-spinner";
 
+import PublicHeader from "./PublicHeader";
 const PublicDocumentList = () => {
   const [DataLoader, setDataLoader] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
@@ -36,9 +37,10 @@ const PublicDocumentList = () => {
   const [fileData, setfileData] = useState([]);
   const [categoryData, setcategoryData] = useState("");
   const [FilterSearch, setFilterSearch] = useState("");
+  
   useEffect(() => {
     document.title = "BBA DOCUMENT LIST";
-    getDataapicall();
+   
     getDocument();
     getCategory();
   }, []);
@@ -52,7 +54,7 @@ const PublicDocumentList = () => {
   } = useForm();
 
   const getDocument = () => {
-    axios.get(`${BaseUrl}/documents/docslist`).then((res) => {
+    axios.get(`${BaseUrl}/documents/docslistPublic`).then((res) => {
       setDataLoader(false);
       setfileData(res.data.data);
     });
@@ -71,7 +73,7 @@ const PublicDocumentList = () => {
         // categories wise filter
         // setFilterSearch(e.target.value);
         axios
-          .get(`${BaseUrl}/documents/all_documents_filter/${filter}`)
+          .get(`${BaseUrl}/documents/all_documents_filterPublic/${filter}`)
           .then((response) => {
             console.log(response.data);
             // console.log(response.data.data);
@@ -92,7 +94,7 @@ const PublicDocumentList = () => {
       getDocument();
     } else {
       axios
-        .get(`${BaseUrl}/documents/all_documents_filter/${filterSearch}`)
+        .get(`${BaseUrl}/documents/all_documents_filterPublic/${filterSearch}`)
         .then((response) => {
           console.log("00000", response.data);
           // console.log(response.data.data);
@@ -115,7 +117,7 @@ const PublicDocumentList = () => {
     } else if (FilterSearch == "" && search != "") {
     
       axios
-        .get(`${BaseUrl}/documents/docslist`)
+        .get(`${BaseUrl}/documents/docslistPublic`)
         .then((response) => {
         
           setdata("");
@@ -138,29 +140,25 @@ const PublicDocumentList = () => {
       console.log("filtr", FilterSearch, "search", search);
 
       axios
-        .get(`${BaseUrl}/documents/docslist`)
+        .get(`${BaseUrl}/documents/docslistPublic`)
         .then((response) => {
           setdata("");
           const alldata = response.data.data;
           const CategoryFilterData = alldata.filter((item) => {
-            const row = item.NAME;
+           console.log("item.CATEGORY_ID",item.CATEGORY_ID)
+           const row =
+           item.CATEGORY_ID + " "
             return row.includes(FilterSearch);
             // item.name.toLowerCase().includes(query)
           });
 
           const SeearchonFilterData = CategoryFilterData.filter((item) => {
             const row =
-              item.MEETING_ID +
-              " " +
-              item.MEETING_DATE +
-              " " +
-              item.FILENAME.split("_")[0] +
-              " " +
-              item.DOCUMENT_TAG;
-            return row.includes(search);
+            item.MEETING_DATE + " " + item.MEETING_ID + " " + item.NAME+" "+item.DOCUMENT_TAG+" " + item.FILENAME.split("_")[0] ;
+          return row.toLowerCase().includes(search);
             // item.name.toLowerCase().includes(query)
           });
-
+          
           setfileData(SeearchonFilterData);
         })
         .catch((error) => {
@@ -175,20 +173,9 @@ const PublicDocumentList = () => {
 
 
 
-  const getDataapicall = () => {
-    axios.get(`${BaseUrl}/documents/docslist`).then((res) => {
-      console.log(res.data.data);
-      setdata(res.data.data);
-      const filteredData = res.data.data.filter(
-        (data) => data.record_id == useParam.id
-      );
-      console.log(filteredData);
-      setfilteredData(filteredData[0]);
-    });
-  };
 
   const getCategory = () => {
-    axios.get(`${BaseUrl}/documents/category/view`).then((res) => {
+    axios.get(`${BaseUrl}/documents/categoryPublic`).then((res) => {
       console.log(res.data.data);
       setDataLoader(false);
       setcategoryData(res.data.data);
@@ -268,15 +255,24 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
       title: "Ebook",
       render: (text, rowKey) => (
         <>
-          {rowKey.FILENAME.split(".")[1] === "pdf" ? (
-            <Link  onClick={()=>ReadingPost('Reading',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}  to={`/docs/pdfView/${rowKey.FILENAME}/${rowKey.ID}`}>
+        {rowKey.DOCTYPE=="public"?      rowKey.FILENAME.split(".")[1] === "pdf" ? (
+            <Link  onClick={()=>ReadingPost('Reading',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}  to={`/docs/reader/${rowKey.FILENAME}/${rowKey.ID}`}>
               <i class="fa fa-book h3"></i>
             </Link>
           ) : (
             <a onClick={OnlyPdfFileRead}>
               <i class="fa fa-book h3"></i>
             </a>
+          ):      rowKey.FILENAME.split(".")[1] === "pdf" ? (
+            <Link to={`/login`}>
+              <i class="fa fa-book h3" style={{color:'red'}}></i>
+            </Link>
+          ) : (
+            <a onClick={OnlyPdfFileRead}>
+              <i class="fa fa-book h3"></i>
+            </a>
           )}
+    
         </>
       ),
     },
@@ -284,32 +280,36 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
       title: "Download",
       render: (text, rowKey) => (
         <>
-        <p style={{cursor:" pointer"}}  onClick={()=>DownloadPost('Download',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}>
-         
-        
-          <span class="fa fa-download"></span>({" "}
+      
+        <Link to={`/login`}>
+        <span class="fa fa-download">
+            
+         ({" "}
           {rowKey.F_SIZE / 1024 > 1023
             ? (rowKey.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
             : Math.ceil(rowKey.F_SIZE / 1024) + " kb"}
           )
-        </p>
+        </span>
+            </Link>
+        
+        
      
           
           
         </>
       ),
     },
+    {
+        title: "Type",
+        dataIndex: "DOCTYPE",
+      },
   ];
 
   return (
     <>
-      {console.log("render344")}
-      <Helmet>
-        <title>Dashboard - BBA ARCHIVE</title>
-        <meta name="description" content="BBA STORE" />
-      </Helmet>
+<PublicHeader/>
       {/* Header */}
-      <div className="page-wrapper">
+      <div className="page-wrapper page-wrapper-publicDashboard">
         {/* Page Content */}
         <div className="content container-fluid">
           <div className="card-header1">

@@ -25,6 +25,7 @@ import PublicDashboard from "./components/MainPage/BBA_Documents/Publiccomponent
 import UsersShow from "./components/MainPage/BBA_Documents/UsersShow";
 import ReadDownload from "./components/MainPage/BBA_Documents/ReadDownload";
 import PublicDocumentList from "./components/MainPage/BBA_Documents/Publiccomponent/PublicDocumentList";
+import PublicPdfView from "./components/MainPage/BBA_Documents/Publiccomponent/PublicPdfView";
 
 
 
@@ -127,6 +128,7 @@ function App() {
                 <>
                  <Route path="*" element={<PublicDashboard />} />
                  <Route path="/docs/list" element={<PublicDocumentList />} />
+                 <Route path="/docs/reader/:name/:recordId" element={<PublicPdfView />} />
                  <Route path="/login" element={<Login />} />
                 <Route path="/registration" element={<Registration />} />
                 <Route path="/verify" element={<Verify />} />

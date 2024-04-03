@@ -5,7 +5,7 @@ const path = require("path");
 const multer = require("multer");
 const DBQuery = require("../Database/Query_Builder");
 const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsingjws");
-// get data public
+// all public routes start
 
 View_Route.get("/getdatapublic", async function (req, res) {
  //("getdata")
@@ -31,7 +31,34 @@ View_Route.get("/categorylistpublic", async function (req, res) {
     data: result,
   });
 })
+View_Route.get("/docslistPublic",async function (req, res) {
+  const s = req.params.id;
 
+  const query = `SELECT category.category_name as NAME, documents.*,fileupload.*  FROM fileupload
+   inner join documents on documents.id=fileupload.documents_id
+inner join category on category.id=documents.category_id
+    order by fileupload.id asc `;
+
+  const result = await DBQuery(query);
+ //(result)
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
+View_Route.get("/categoryPublic", async function (req, res) {
+  const s = req.params.id;
+
+  const query = `SELECT*from category `;
+
+  const result = await DBQuery(query);
+
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
+//all  public routes end
 //get method
 View_Route.get("/getdata",RouteCheckUsingJWT, async function (req, res) {
  //("getdata")

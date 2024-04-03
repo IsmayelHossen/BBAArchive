@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 });
 app.use(express.static(path.join(__dirname, 'build')));
 
-
+// app.use('/public', express.static('public'));
 
   //    "start": "pm2 start index.js --log E:/Archive/Backend/to/logfile.log",
   // "start": "pm2 start index.js --log E:/Archive/Backend/to/logfile.log",

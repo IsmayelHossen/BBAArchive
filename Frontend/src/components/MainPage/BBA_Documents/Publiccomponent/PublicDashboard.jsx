@@ -12,8 +12,8 @@ import "../../../../index.css";
 
 import "../../BBA_Documents/vendor.css";
 import { BaseUrl } from "./../CommonUrl";
-import BBAImage from '../../../assets/img/BBA-logo.png';
-import BDImage from '../../../assets/img/bdmonogram.png';
+
+import PublicHeader from "./PublicHeader";
 // import 'Assets/plugins/morris/morris.min.js';
 // import 'Assets/plugins/raphael/raphael.min.js';
 // import 'Assets/js/chart.js';
@@ -56,27 +56,7 @@ const currentYear = currentDate.getFullYear();
   //tjhghj
   return (
     <>
-      <Helmet>
-        <title>BBA ARCHIVE</title>
-        <meta name="description" content="BBA DOCUMENTS" />
-      </Helmet>
-      <div>
-       <div className="publicheader " style={{right:"0px"}}>
-         {/* Logo */}
-         <div class="container-fluid d-flex justify-content-between ">
-         
-         <img src={BDImage} class="bdimagelogo" alt="Bangladesh Monogram" />
-         <div><h2 className="pdtitle"> Bangladesh Bridge Authority</h2>
-                <h3 className="pdnametitle"> Welcome to  Archive</h3></div>
-                <img src={BBAImage} class="bbimagelogo" alt="BBA" />
-         </div>
- 
-         {/* /Header Menu */}
-         {/* Mobile Menu */}
-      
-         {/* /Mobile Menu */}
-       </div>
-     </div>
+ <PublicHeader/>
       {/* Header */}
       <div className="page-wrapper page-wrapper-publicDashboard">
         {/* Page Content */}

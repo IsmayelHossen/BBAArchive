@@ -77,6 +77,24 @@ Search_Route.get("/all_documents_filter/:filter",RouteCheckUsingJWT, async funct
     data: result,
   });
 });
+//all public routes start
+Search_Route.get("/all_documents_filterPublic/:filter", async function (req, res) {
+  const filter = req.params.filter;
+  console.log(filter);
+  const query = `SELECT category_name as NAME,fileupload.*,documents.* FROM fileupload 
+  inner join documents on fileupload.documents_id=documents.id
+  inner join category on category.id=documents.category_id
+   where documents.category_id='${filter}'     `;
+
+ 
+  const result = await DBQuery(query);
+  console.log(result);
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
+// all public routes end
 
 //category search
 
