@@ -36,7 +36,7 @@
     display: block;
     border: 2px solid #e8e5e1;
     box-shadow: 0px 2px 3px #595c60;
-    margin-top: .5em;
+    margin-top:-1em;
     padding-top: 1px;
     /* padding-left: 125px; */
     padding-bottom: 2px;
@@ -71,7 +71,7 @@
     .canvasclass {
 
         max-width: 100%;
-        height: auto;
+        height: auto !important;
 
     }
 

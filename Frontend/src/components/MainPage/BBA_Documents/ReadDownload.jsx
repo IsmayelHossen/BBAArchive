@@ -71,18 +71,14 @@ const params=useParams();
     if (search == "") {
       getDataapicall();
     } else {
-      const searchby_lowercase = search.toLowerCase();
-      axios
-        .get(`${BaseUrl}/documents/logier`)
-        .then((response) => {
-          console.log(response.data);
-          // console.log(response.data.data);
-          setdata("");
-          setdata(response.data.data);
-        })
-        .catch((error) => {
-          console.error(error);
+        const searchby_lowercase = search.toLowerCase();
+        const SeearcData = Alldata.filter((item) => {
+          const row =
+          item.name + " " + item.user_rule + " " + item.createtime+" "+item.terminal_ip+" " + item.terminal_type.split("_")[0]+" "+ item.emp_id+" "+item.usertype ;
+        return row.toLowerCase().includes(searchby_lowercase);
+          // item.name.toLowerCase().includes(query)
         });
+        setdata(SeearcData)
     }
   };
   //gfhf

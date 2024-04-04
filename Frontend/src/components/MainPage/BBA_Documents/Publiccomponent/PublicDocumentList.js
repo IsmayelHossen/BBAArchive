@@ -186,14 +186,15 @@ const PublicDocumentList = () => {
     swal("Only Pdf file you can read!", "", "warning");
   };
   const ReadingPost=(type,categoryid,filename,doc_id)=>{
-console.log()
+
 const data={
   type,
   categoryid,
   filename,
   doc_id
 }
-axios.post(`${BaseUrl}/documents/read_download/add`, data).then((response) => {
+console.log("etert",data)
+axios.post(`${BaseUrl}/documents/read_downloadPublic/add`, data).then((response) => {
   if (response) {
   
    

@@ -104,7 +104,9 @@ const Create_Document = () => {
     handleSubmit: handleSubmit1,
     formState: { errors: errors2 },
   } = useForm();
-
+  const userDataString = localStorage.getItem('userData');
+  const userData = JSON.parse(userDataString);
+  console.log("userData",userData)
   //get last documents id
   const handleOnchangeforlast_id = async (e) => {
     setdocumentType(e.target.value);
@@ -281,7 +283,7 @@ const Create_Document = () => {
               />
             </a>
             &nbsp; &nbsp; &nbsp;
-            <a
+            {userData.user_rule=='Admin' &&     <a
               className="btn btn-danger btn-sm"
               onClick={() => {
                 DeleteIndividual_vendor(record.ID);
@@ -291,7 +293,8 @@ const Create_Document = () => {
                 className="fa fa-trash-o"
                 style={{ fontSize: "20px", color: "white" }}
               />
-            </a>
+            </a>}
+        
           </div>
         </div>
       ),

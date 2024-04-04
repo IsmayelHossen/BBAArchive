@@ -92,7 +92,7 @@ const PublicPdfView = () => {
       {/* Header */}
       <div className="page-wrapper page-wrapper-publicDashboard">
         <div className="content container-fluid">
-          <div class="card-header1" style={{ padding: "0em .0em !important" }}>
+          <div class="card-headerPublic" style={{ padding: "0em .0em !important" }}>
             <div className="">
               <h4
                 className="text-center mx-auto mb-3 text-uppercase fddd"

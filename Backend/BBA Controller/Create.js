@@ -133,5 +133,19 @@ Create_Route.post("/read_download/add",RouteCheckUsingJWT, async function (req, 
   const result2 = await DBQuery(query);
  
 });
+//public routes
+Create_Route.post("/read_downloadPublic/add", async function (req, res, next) {
+  console.log(req.body);
 
+
+  
+  const parts = req.ip || req.remoteAddress;
+  // const ENTRY_USER = logInfo?.employe_id;
+  var ip = parts?.split(':');
+   ip = ip[ip.length - 1]
+  const TERMINAL_TYPE =  req.device?.type;;
+  const query = `INSERT INTO   read_download(terminal_type ,terminal_ip,emp_id,category,filename,process_type,doc_id) VALUES('${TERMINAL_TYPE}','${ip}','1001','${req.body.categoryid}','${req.body.filename}','${req.body.type}','${req.body.doc_id}')`;
+  const result2 = await DBQuery(query);
+ 
+});
 module.exports = Create_Route;

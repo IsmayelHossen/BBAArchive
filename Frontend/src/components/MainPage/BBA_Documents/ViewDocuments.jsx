@@ -28,6 +28,8 @@ const ViewDocuments = () => {
   const [searchdata, setsearchdata] = useState();
   const [progress, setProgress] = useState("");
   const [progressButton, setprogressButton] = useState(false);
+  const userDataString = localStorage.getItem('userData');
+  const userData = JSON.parse(userDataString);
   const {
     register,
     handleSubmit,
@@ -376,7 +378,8 @@ const ViewDocuments = () => {
                           <th>File Name</th>
                           <th>Ebook</th>
                           <th>Download</th>
-                          <th>Action</th>
+                          {userData.user_rule=="Admin"&& <th>Action</th>}
+                        
                         </tr>
                       </thead>
                       <tbody>
@@ -412,7 +415,7 @@ const ViewDocuments = () => {
        </p>
                               </td>
                               <td className="">
-                                <a
+                                {userData.user_rule=="Admin"&&<a
                                   className="dropdown-item"
                                   href="#"
                                   onClick={() => {
@@ -426,7 +429,8 @@ const ViewDocuments = () => {
                                     className="fa fa-trash-o m-r-5"
                                     style={{ fontSize: "20px", color: "red" }}
                                   />
-                                </a>
+                                </a>}
+                                
                               </td>
                             </tr>
                           ))}

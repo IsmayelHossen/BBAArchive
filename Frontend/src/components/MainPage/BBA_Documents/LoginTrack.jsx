@@ -55,13 +55,6 @@ const LoginTrack = () => {
     });
   };
 
-
-
-
-
-
-
-
   //search vendor
   const SearchData = (e) => {
     console.log(e.target.value);
@@ -72,17 +65,14 @@ const LoginTrack = () => {
       getDataapicall();
     } else {
       const searchby_lowercase = search.toLowerCase();
-      axios
-        .get(`${BaseUrl}/documents/logier`)
-        .then((response) => {
-          console.log(response.data);
-          // console.log(response.data.data);
-          setdata("");
-          setdata(response.data.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      const SeearcData = Alldata.filter((item) => {
+        const row =
+        item.NAME + " " + item.USER_RULE + " " + item.CREATED_AT+" "+item.TERMINAL_IP+" " + item.TERMINAL_TYPE.split("_")[0]+" "+ item.USER_ID+" "+item.EXIT_TIME ;
+      return row.toLowerCase().includes(searchby_lowercase);
+        // item.name.toLowerCase().includes(query)
+      });
+      
+      setdata(SeearcData);
     }
   };
   //gfhf

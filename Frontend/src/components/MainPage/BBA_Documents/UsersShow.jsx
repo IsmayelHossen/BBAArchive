@@ -83,20 +83,16 @@ const UsersShow = () => {
     setsearchdata(e.target.value);
     const search = e.target.value;
     if (search == "") {
-     
+      getUsers()
     } else {
       const searchby_lowercase = search.toLowerCase();
-      axios
-        .get(`${BaseUrl}/documents/category/search/${searchby_lowercase}`)
-        .then((response) => {
-          console.log(response.data);
-          // console.log(response.data.data);
-          setUserdata("");
-          setUserdata(response.data.data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
+      const SeearcData = Userdata.filter((item) => {
+        const row =
+        item.name + " " + item.mobile + " " + item.email+" "+item.usertype+" " + item.user_rule+" "+ item.designation ;
+      return row.toLowerCase().includes(searchby_lowercase);
+        // item.name.toLowerCase().includes(query)
+      });
+      setUserdata(SeearcData)
     }
   };
   //gfhf

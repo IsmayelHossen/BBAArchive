@@ -15,6 +15,7 @@ const path = require('path'); // Import the path module
 const dotenv = require("dotenv");
 var cookieParser = require('cookie-parser')
 const device = require("express-device");
+const RouteCheckUsingJWT = require('./Database/RouteChecking/RouteCheckingUsingjws');
 oracledb.autoCommit = true;
 oracledb.outFormat = oracledb.OBJECT;
 dotenv.config();
@@ -22,7 +23,7 @@ app.use(device.capture());
 app.use(express.json())
 app.use(cors());
 app.options("*", cors())
-app.use(express.static('public'))
+
 app.use(routes);
 app.use(cookieParser())
 
@@ -32,7 +33,9 @@ app.use((req, res, next) => {
   next();
 });
 app.use(express.static(path.join(__dirname, 'build')));
-
+// 
+app.use(express.static('public'))
+app.use('/uploadDoc', RouteCheckUsingJWT, express.static('public/uploadDoc'));
 // app.use('/public', express.static('public'));
 
   //    "start": "pm2 start index.js --log E:/Archive/Backend/to/logfile.log",

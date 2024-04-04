@@ -143,21 +143,16 @@ const DocumentList = () => {
           setdata("");
           const alldata = response.data.data;
           const CategoryFilterData = alldata.filter((item) => {
-            const row = item.NAME;
+            const row =
+           item.CATEGORY_ID + " "
             return row.includes(FilterSearch);
             // item.name.toLowerCase().includes(query)
           });
 
           const SeearchonFilterData = CategoryFilterData.filter((item) => {
             const row =
-              item.MEETING_ID +
-              " " +
-              item.MEETING_DATE +
-              " " +
-              item.FILENAME.split("_")[0] +
-              " " +
-              item.DOCUMENT_TAG;
-            return row.includes(search);
+            item.MEETING_DATE + " " + item.MEETING_ID + " " + item.NAME+" "+item.DOCUMENT_TAG+" " + item.FILENAME.split("_")[0] ;
+          return row.toLowerCase().includes(search);
             // item.name.toLowerCase().includes(query)
           });
 
