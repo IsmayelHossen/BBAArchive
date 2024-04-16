@@ -53,9 +53,19 @@ Delete_Route.delete("/category/delete/:id",RouteCheckUsingJWT, async function (r
   console.log(id);
   const query = `delete from category where id='${id}'`;
   const result1 = await DBQuery(query);
-  res.status(200).json({
-    success: true,
-    message: "Deleted data suceessfully",
-  });
+  console.log("result1",result1.errno)
+  if(result1.errno==1451){
+    res.status(200).json({
+      success: false,
+      message: "Deleted data suceessfully",
+    });
+  }
+  else{
+    res.status(200).json({
+      success: true,
+      message: "Deleted data suceessfully",
+    });
+  }
+
 });
 module.exports = Delete_Route;

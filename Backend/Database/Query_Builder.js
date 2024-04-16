@@ -37,7 +37,8 @@ const DBQuery = async function db_query(query) {
     return result;
   } catch (error) {
     console.error(error);
-    throw new Error("Query not executed");
+    return error;
+    //throw new Error("Query not executed");
   } finally {
     connection.end();
   }

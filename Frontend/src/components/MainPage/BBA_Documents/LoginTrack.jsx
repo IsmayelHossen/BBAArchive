@@ -94,29 +94,8 @@ const LoginTrack = () => {
     },
     {
       title: "Entry Time",
-      // dataIndex: "CREATED_AT",
-      render: (text, record) => {
-        const utcDateTime = new Date(record.CREATED_AT); // Assuming CREATED_AT contains UTC time
-        const offset = 1; // Offset for Dhaka, Bangladesh (UTC+6) in minutes
-    
-        // Adjust the time for the desired time zone
-        const localDateTime = new Date(utcDateTime.getTime() + (offset * 60 * 1000));
-    
-        // Get the hour and minute components
-        const hours = localDateTime.getHours();
-        const minutes = localDateTime.getMinutes();
-    
-        // Determine AM/PM indicator
-        const amOrPm = hours >= 12 ? 'PM' : 'AM';
-    
-        // Format the hour to 12-hour format
-        const formattedHour = hours % 12 || 12;
-    
-        // Format the local date time string
-        const formattedDateTime = `${localDateTime.getDate().toString().padStart(2, '0')}-${(localDateTime.getMonth() + 1).toString().padStart(2, '0')}-${localDateTime.getFullYear()} ${formattedHour}:${minutes.toString().padStart(2, '0')}:${localDateTime.getSeconds().toString().padStart(2, '0')} ${amOrPm}`;
-    
-        return formattedDateTime;
-      }
+      dataIndex: "CREATED_AT",
+
     },
     {
       title: "Exit Time",

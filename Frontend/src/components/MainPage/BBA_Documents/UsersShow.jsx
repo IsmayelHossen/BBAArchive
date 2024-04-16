@@ -209,7 +209,7 @@ const UsersShow = () => {
                   data-toggle="modal"
                   data-target="#exampleModal"
                 >
-                  <i class="fa fa-plus"></i> <span>Add Category</span>
+                  <span>Total User</span>
                 </button>
               </div>
             </div>

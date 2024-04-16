@@ -109,8 +109,27 @@ console.log(isValidPassword)
         // const ENTRY_USER = logInfo?.employe_id;
         var ip = parts?.split(':');
          ip = ip[ip.length - 1]
-        const TERMINAL_TYPE =  req.device?.type;;
-      const query = `INSERT INTO  logers (terminal_type,terminal_ip,user_id,user_rule)VALUES('${TERMINAL_TYPE}','${ip}','${findUser[0].user_id}','${findUser[0].user_rule}')`;
+        const TERMINAL_TYPE =  req.device?.type;
+
+  // Extract the day, month, and year
+  var day = new Date().getDate();
+  var month = new Date().getMonth() + 1; // Month is zero-based, so we add 1
+  const year = new Date().getFullYear();
+  
+  // Convert to Dhaka time zone
+  const options = { timeZone: 'Asia/Dhaka' };
+  const dhakaTime = new Date().toLocaleString('en-US', { ...options, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' });
+  
+  // Format the date as "day-month-year" and time as "hour:minute:second AM/PM"
+  if(day<10){
+    day='0'+day
+  }
+  if(month<10){
+month='0'+month;
+  }
+  const formattedDateTime = `${day}-${month}-${year}, ${dhakaTime}`;
+
+      const query = `INSERT INTO  logers (CREATED_AT,terminal_type,terminal_ip,user_id,user_rule)VALUES('${formattedDateTime}','${TERMINAL_TYPE}','${ip}','${findUser[0].user_id}','${findUser[0].user_rule}')`;
       const savetoLoger = await DBQuery(query)
       console.log("savetoLoger",savetoLoger)
       if(savetoLoger.affectedRows){

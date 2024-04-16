@@ -128,8 +128,27 @@ Create_Route.post("/read_download/add",RouteCheckUsingJWT, async function (req, 
   // const ENTRY_USER = logInfo?.employe_id;
   var ip = parts?.split(':');
    ip = ip[ip.length - 1]
-  const TERMINAL_TYPE =  req.device?.type;;
-  const query = `INSERT INTO   read_download(terminal_type ,terminal_ip,emp_id,category,filename,process_type,doc_id) VALUES('${TERMINAL_TYPE}','${ip}','${req.user_id}','${req.body.categoryid}','${req.body.filename}','${req.body.type}','${req.body.doc_id}')`;
+  const TERMINAL_TYPE =  req.device?.type;
+
+  // Extract the day, month, and year
+  var day = new Date().getDate();
+  var month = new Date().getMonth() + 1; // Month is zero-based, so we add 1
+  const year = new Date().getFullYear();
+  
+  // Convert to Dhaka time zone
+  const options = { timeZone: 'Asia/Dhaka' };
+  const dhakaTime = new Date().toLocaleString('en-US', { ...options, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' });
+  
+  // Format the date as "day-month-year" and time as "hour:minute:second AM/PM"
+  if(day<10){
+    day='0'+day
+  }
+  if(month<10){
+month='0'+month;
+  }
+  const formattedDateTime = `${day}-${month}-${year}, ${dhakaTime}`;
+
+  const query = `INSERT INTO   read_download(createtime,terminal_type ,terminal_ip,emp_id,category,filename,process_type,doc_id) VALUES('${formattedDateTime}','${TERMINAL_TYPE}','${ip}','${req.user_id}','${req.body.categoryid}','${req.body.filename}','${req.body.type}','${req.body.doc_id}')`;
   const result2 = await DBQuery(query);
  
 });
@@ -144,7 +163,25 @@ Create_Route.post("/read_downloadPublic/add", async function (req, res, next) {
   var ip = parts?.split(':');
    ip = ip[ip.length - 1]
   const TERMINAL_TYPE =  req.device?.type;;
-  const query = `INSERT INTO   read_download(terminal_type ,terminal_ip,emp_id,category,filename,process_type,doc_id) VALUES('${TERMINAL_TYPE}','${ip}','1001','${req.body.categoryid}','${req.body.filename}','${req.body.type}','${req.body.doc_id}')`;
+
+    // Extract the day, month, and year
+    var day = new Date().getDate();
+    var month = new Date().getMonth() + 1; // Month is zero-based, so we add 1
+    const year = new Date().getFullYear();
+    
+    // Convert to Dhaka time zone
+    const options = { timeZone: 'Asia/Dhaka' };
+    const dhakaTime = new Date().toLocaleString('en-US', { ...options, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' });
+    
+    // Format the date as "day-month-year" and time as "hour:minute:second AM/PM"
+    if(day<10){
+      day='0'+day
+    }
+    if(month<10){
+  month='0'+month;
+    }
+    const formattedDateTime = `${day}-${month}-${year}, ${dhakaTime}`;
+  const query = `INSERT INTO   read_download(createtime,terminal_type ,terminal_ip,emp_id,category,filename,process_type,doc_id) VALUES('${formattedDateTime}','${TERMINAL_TYPE}','${ip}','1001','${req.body.categoryid}','${req.body.filename}','${req.body.type}','${req.body.doc_id}')`;
   const result2 = await DBQuery(query);
  
 });

@@ -140,6 +140,9 @@ const Docs_Category = () => {
               getDataapicall();
               swal("Successfully Deleted!Thank You", "", "success");
             }
+            else if(response.data.success==false){
+              swal("You cannot delete category,due to its has files exist", "", "warning");
+            }
           })
           .catch((error) => {
             console.log(error);

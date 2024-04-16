@@ -255,28 +255,7 @@ if (fromDate > toDate) {
 <td>{row.TERMINAL_TYPE}</td>
 <td>
 {
-(() => {
-const utcDateTime = new Date(row.CREATED_AT); // Assuming CREATED_AT contains UTC time
-// const offset = ; // Offset for Dhaka, Bangladesh (UTC+6) in minutes
-
-// Adjust the time for the desired time zone
-const localDateTime = new Date(utcDateTime.getTime() + ( 60 * 1000));
-
-// Get the hour and minute components
-const hours = localDateTime.getHours();
-const minutes = localDateTime.getMinutes();
-
-// Determine AM/PM indicator
-const amOrPm = hours >= 12 ? 'PM' : 'AM';
-
-// Format the hour to 12-hour format
-const formattedHour = hours % 12 || 12;
-
-// Format the local date time string
-const formattedDateTime = `${localDateTime.getDate().toString().padStart(2, '0')}-${(localDateTime.getMonth() + 1).toString().padStart(2, '0')}-${localDateTime.getFullYear()} ${formattedHour}:${minutes.toString().padStart(2, '0')}:${localDateTime.getSeconds().toString().padStart(2, '0')} ${amOrPm}`;
-
-return formattedDateTime;
-})()
+row.CREATED_AT
 }
 </td>
 <td>{row.EXIT_TIME}</td>

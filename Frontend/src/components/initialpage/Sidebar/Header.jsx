@@ -90,7 +90,7 @@ axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
            {/* Flag */}
            {/* /Flag */}
            {/* Notifications */}
-           <li className="nav-item dropdown">
+           {/* <li className="nav-item dropdown">
              <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
                <i className="fa fa-bell-o" /> <span className="badge badge-pill">3</span>
              </a>
@@ -101,28 +101,16 @@ axios.defaults.headers.common['authorization'] = `Bearer ${authToken}`;
                  <Link onClick={()=>localStorage.setItem("minheight","true")} to="/app/administrator/activities">View all Notifications</Link>
                </div>
              </div>
-           </li>
+           </li> */}
            {/* /Notifications */}
            {/* Message Notifications */}
            <li className="nav-item dropdown">
-             <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-               <i className="fa fa-comment-o" /> <span className="badge badge-pill">8</span>
-             </a>
-             <div className="dropdown-menu notifications">
-               <div className="topnav-dropdown-header">
-                 <span className="notification-title">Messages</span>
-                 <a href="" className="clear-noti"> Clear All </a>
-               </div>
-              
-               <div className="topnav-dropdown-footer">
-                 <Link onClick={()=>localStorage.setItem("minheight","true")} to="/conversation/chat">View all Messages</Link>
-               </div>
-             </div>
+           
            </li>
            {/* /Message Notifications */}
            <li className="nav-item dropdown has-arrow main-drop">
              <a href="#" className="dropdown-toggle nav-link" data-toggle="dropdown">
-               <span className="user-img"><img  alt="logo" />
+               <span className="user-img">
                  <span className="status online" /></span>
                <span>{userData?.name}</span>
              </a>
