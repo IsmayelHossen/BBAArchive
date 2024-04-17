@@ -258,7 +258,7 @@ View_Route.get("/gettoday_visitore",RouteCheckUsingJWT, async function (req, res
   const day = currentDate.getDate();
   const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
   const year = currentDate.getFullYear();
-  const todaydate=year+"-"+month+"-"+day
+  const todaydate=day+"-"+month+"-"+year
 
  //("today",todaydate);
   
@@ -323,55 +323,25 @@ View_Route.get("/report/:reporttype",RouteCheckUsingJWT, async function (req, re
 
 });
 View_Route.get("/report/:datefrom/:dateto",RouteCheckUsingJWT, async function (req, res) {
- //(req.params.datefrom)
- //(req.params.dateto)
-  const currentDate = new Date();
 
-  // Extract the day, month, and year
-  const day = currentDate.getDate();
-  const month = currentDate.getMonth() + 1; // Month is zero-based, so we add 1
-  const year = currentDate.getFullYear();
-  const todaydate=year+"-"+month+"-"+day
-
- //("today",todaydate);
-  // if(req.params.reporttype=="daywise"){
-  //  // const query = `SELECT distinct(terminal_ip) FROM logers  WHERE DATE(CREATED_AT) = '${todaydate}'`;
-  //  //SELECT DISTINCT terminal_ip FROM logers WHERE YEAR(CREATED_AT) = 2024 AND DAY(CREATED_AT) = 19; 
-  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} AND DAY(CREATED_AT) = ${day} order by logers.id desc`;
-  //   const result = await DBQuery(query);
-  //  //(result);
-  //   res.status(200).json({
-  //     success: true,
-  //     data: result,
-  //   });
-  // }
-  // else if(req.params.reporttype=="monthwise"){
-  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} AND MONTH(CREATED_AT) = ${month} order by logers.id desc`;
-  //   const result = await DBQuery(query);
-  //  //(result);
-  //   res.status(200).json({
-  //     success: true,
-  //     data: result,
-  //   });
-  // }
-  // else if(req.params.reporttype=="yearwise"){
-  //   const query = `SELECT logers.*,users.NAME from logers inner join users on logers.user_id=users.user_id  WHERE YEAR(CREATED_AT) = ${year} order by logers.id desc`;
-  //   const result = await DBQuery(query);
-  //  //(result);
-  //   res.status(200).json({
-  //     success: true,
-  //     data: result,
-  //   });
-  // }
+ let fromdate=req.params.datefrom.split('-')[2]+"-"+req.params.datefrom.split('-')[1]+"-"+req.params.datefrom.split('-')[0]
+ let todate=req.params.dateto.split('-')[2]+"-"+req.params.dateto.split('-')[1]+"-"+req.params.dateto.split('-')[0]
+ console.log(fromdate)
+ console.log(todate)
  
-    const query = `SELECT logers.*, users.NAME 
-    FROM logers 
-    INNER JOIN users ON logers.user_id = users.user_id 
-    WHERE Date(CREATED_AT) >= '${req.params.datefrom}' 
-    AND Date(CREATED_AT) <= '${req.params.dateto}' 
-    ORDER BY logers.id DESC;`;
+ 
+  const query = `
+  SELECT logers.*, users.NAME 
+  FROM logers 
+  INNER JOIN users ON logers.user_id = users.user_id 
+  WHERE (logers.CREATED_AT >= '${fromdate}' AND logers.CREATED_AT <= '${todate}') 
+    OR logers.CREATED_AT LIKE '%${fromdate}%' 
+    OR logers.CREATED_AT LIKE '%${todate}%'
+  ORDER BY logers.id DESC;
+`;
+
     const result = await DBQuery(query);
-   //(result);
+   console.log(result);
     res.status(200).json({
       success: true,
       data: result,

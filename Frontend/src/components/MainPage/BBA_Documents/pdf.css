@@ -65,7 +65,7 @@
     .ebookMain_div {
         width: fit-content;
         max-width: 100%;
-        height: auto
+        height: auto !important
     }
 
     .canvasclass {

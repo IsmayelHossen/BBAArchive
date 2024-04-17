@@ -18,6 +18,7 @@ import { BaseUrl } from "./../CommonUrl";
 import { ColorRing, LineWave } from "react-loader-spinner";
 
 import PublicHeader from "./PublicHeader";
+import Footer from "../../../initialpage/Footer";
 const PublicDocumentList = () => {
   const [DataLoader, setDataLoader] = useState(true);
   const [Vendor_data, SetVendorData] = useState([]);
@@ -430,6 +431,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
             </div>
           </div>
         </div>
+        <Footer/>
       </div>
     </>
   );

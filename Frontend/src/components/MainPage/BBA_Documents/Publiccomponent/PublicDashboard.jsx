@@ -146,7 +146,7 @@ const currentYear = currentDate.getFullYear();
                       <div className="col-md-3 ">
                         <div className="card dash-widget singlecategorycard">
                           <div className="card-body">
-                          <Link to={""}>
+                      
                             <span className="dash-widget-icon">
                               <i class="fa fa-file-o" aria-hidden="true"></i>
                             </span>
@@ -154,7 +154,7 @@ const currentYear = currentDate.getFullYear();
                               <h3>{CategoryFileCount(row.CATEGORY_NAME)}</h3>
                               <span>{row.CATEGORY_NAME}</span>
                             </div>
-                            </Link>
+                        
                           </div>
                         </div>
                       </div>

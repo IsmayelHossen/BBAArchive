@@ -8,6 +8,7 @@ import { BaseUrl } from "./../CommonUrl";
 import { useEffect } from "react";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
 import PublicHeader from "./PublicHeader";
+import Footer from "../../../initialpage/Footer";
 const PublicPdfView = () => {
   const useParam = useParams();
   let navigate = useNavigate();
@@ -284,6 +285,7 @@ const PublicPdfView = () => {
           </div>
         </div>
       </div>
+      <Footer/>
     </>
   );
 };

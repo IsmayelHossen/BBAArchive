@@ -13,6 +13,8 @@ const LoginRegRouter = require('./BBA Controller/LoginReg');
 const routes=express.Router({})
 const path = require('path'); // Import the path module
 const dotenv = require("dotenv");
+const fs = require('fs');
+const https = require('https');
 var cookieParser = require('cookie-parser')
 const device = require("express-device");
 const RouteCheckUsingJWT = require('./Database/RouteChecking/RouteCheckingUsingjws');
@@ -52,6 +54,25 @@ app.use("/loginReg",LoginRegRouter);
 //   res.sendFile(path.join(__dirname, 'build', 'index.html'));
 // });
 
+
+
 app.listen(port, () => {
   console.log(`Example app listening on port' ${port}`)
 })
+
+
+
+//ssl https configure
+// SSL certificate options
+// const options = {
+//   key: fs.readFileSync('path/to/your/private/key.pem'),
+//   cert: fs.readFileSync('path/to/your/ssl/certificate.pem')
+// };
+
+// // Create HTTPS server
+// const server = https.createServer(options, app);
+
+// // Start listening
+// server.listen(port, () => {
+//   console.log(`Example app listening on port ${port}!`);
+// })

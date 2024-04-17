@@ -162,12 +162,7 @@ const TotalView = ({ alldata9 }) => {
                       <div className="dash-widget-info">
                         <h3>{todayvisitors?.length}</h3>
                         <span>Today Visitors </span>
-                        {Alldata != null &&
-                          Alldata.map((row, index) => (
-                            <>
-                             
-                            </>
-                          ))}
+                       
                       </div>
                     </Link>
                   </div>
