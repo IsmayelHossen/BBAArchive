@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/initialpage/Sidebar/Header";
 import Sidebar from "./components/initialpage/Sidebar/sidebar";
 import Dashboard from "./components/MainPage//BBA_Documents/Dashboard";
-import Create_Document from "./components/MainPage/BBA_Documents/Create_Document";
 import ViewDocuments from "./components/MainPage/BBA_Documents/ViewDocuments";
 import DocumentList from "./components/MainPage/BBA_Documents/DocumentList";
 import PdfView from "./components/MainPage/BBA_Documents/PdfView";
@@ -26,6 +25,7 @@ import UsersShow from "./components/MainPage/BBA_Documents/UsersShow";
 import ReadDownload from "./components/MainPage/BBA_Documents/ReadDownload";
 import PublicDocumentList from "./components/MainPage/BBA_Documents/Publiccomponent/PublicDocumentList";
 import PublicPdfView from "./components/MainPage/BBA_Documents/Publiccomponent/PublicPdfView";
+import IndividualDocument from "./components/MainPage/BBA_Documents/IndividualDocument";
 
 
 
@@ -57,7 +57,7 @@ function App() {
                 <Route path="add" element={<Create_Document1 />} />
                 <Route
                   path="type_wise_view/:type"
-                  element={<Create_Document />}
+                  element={<IndividualDocument />}
                 />
                 <Route path="category/add" element={<Docs_Category />} />
 
@@ -88,7 +88,7 @@ function App() {
                 <Route path="add" element={<Create_Document1 />} />
                 <Route
                   path="type_wise_view/:type"
-                  element={<Create_Document />}
+                  element={<IndividualDocument />}
                 />
                 <Route path="category/add" element={<Docs_Category />} />
 

@@ -217,7 +217,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
   };
 
   // Example: POST request using Axios to update download count
-  axios.post(`${BaseUrl}/documents/read_download/add`, data)
+  axios.post(`${BaseUrl}/documents/read_downloadPublic/add`, data)
     .then((response) => {
       // Handle response if needed
     })
@@ -240,7 +240,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
       dataIndex: "NAME",
     },
     {
-      title: "Document Id",
+      title: "Document Id/Name",
       dataIndex: "MEETING_ID",
     },
 
@@ -257,17 +257,9 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
       title: "Ebook",
       render: (text, rowKey) => (
         <>
-        {rowKey.DOCTYPE=="public"?      rowKey.FILENAME.split(".")[1] === "pdf" ? (
+        {    rowKey.FILENAME.split(".")[1] === "pdf" ? (
             <Link  onClick={()=>ReadingPost('Reading',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}  to={`/docs/reader/${rowKey.FILENAME}/${rowKey.ID}`}>
               <i class="fa fa-book h3"></i>
-            </Link>
-          ) : (
-            <a onClick={OnlyPdfFileRead}>
-              <i class="fa fa-book h3"></i>
-            </a>
-          ):      rowKey.FILENAME.split(".")[1] === "pdf" ? (
-            <Link to={`/login`}>
-              <i class="fa fa-book h3" style={{color:'red'}}></i>
             </Link>
           ) : (
             <a onClick={OnlyPdfFileRead}>
@@ -282,29 +274,22 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
       title: "Download",
       render: (text, rowKey) => (
         <>
-      
-        <Link to={`/login`}>
-        <span class="fa fa-download">
-            
-         ({" "}
+        <p style={{cursor:" pointer"}}  onClick={()=>DownloadPost('Download',rowKey.CATEGORY_ID,rowKey.FILENAME,rowKey.DOCUMENTS_ID)}>
+         
+        
+          <span class="fa fa-download"></span>({" "}
           {rowKey.F_SIZE / 1024 > 1023
             ? (rowKey.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
             : Math.ceil(rowKey.F_SIZE / 1024) + " kb"}
           )
-        </span>
-            </Link>
-        
-        
+        </p>
      
           
           
         </>
       ),
     },
-    {
-        title: "Type",
-        dataIndex: "DOCTYPE",
-      },
+   
   ];
 
   return (
@@ -340,7 +325,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
                         })}
                       >
                         <option value="">Select Type</option>
-                        {categoryData.length > 0 && (
+                        {categoryData?.length > 0 && (
                           <>
                             {categoryData.map((row, index) => (
                               <option value={row.ID}>
@@ -373,7 +358,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
 
               <div class="ml-4">
                 <button class="Button_success">
-                  Total File:({fileData.length})
+                  Total File:({fileData?.length})
                 </button>
               </div>
             </div>
@@ -411,7 +396,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
                     <Table
                       className="table-striped"
                       pagination={{
-                        total: fileData.length,
+                        total: fileData?.length,
                         showTotal: (total, range) =>
                           `Showing ${range[0]} to ${range[1]} of ${total} entries`,
                         showSizeChanger: true,

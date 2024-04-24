@@ -2,17 +2,17 @@ const express = require("express");
 const jwt = require("jsonwebtoken");
 const RouteCheckUsingJWT = (req, res, next) => {
   //console.log(req);
-  const { authorization } = req.headers;
+  const { authorization } = req?.headers;
   try {
    
     if(authorization){
     const token = authorization?.split(" ")[1];
     const decoded = jwt.verify(token, process.env.JWT_TOKEN_SECRET);
-    const { name, Email ,user_id} = decoded;
+    const { name, Email ,user_id, user_rule} = decoded;
     req.name = name;
     req.Email = Email;
     req.user_id=user_id;
-  
+  req.user_rule=user_rule;
  
     next();
     }

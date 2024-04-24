@@ -485,7 +485,7 @@ const userData = JSON.parse(userDataString);
                                   >
                                     {" "}
                                     <span style={{ color: "red" }}>*</span>
-                                    Document Id
+                                    Document Id/Name
                                   </label>
                                   <div className="col-sm-8" style={{textAlign:'left'}}>
                                     {!lastIdLoadder && (
@@ -503,7 +503,7 @@ const userData = JSON.parse(userDataString);
                                     <input
                                       type="text"
                                       class="form-control bba_documents-form-control"
-                                      placeholder="Document ID"
+                                      placeholder="Document ID/Name"
                                       // defaultValue={nextDocId}
                                       {...register("doc_id", {
                                         required: true,
@@ -946,7 +946,7 @@ const userData = JSON.parse(userDataString);
                               </select>
                             </div>
                           </div>
-
+                       
                           <div className="SubmitFooter">
                             <button type="submit" class="Button_success">
                               <span>Update</span>

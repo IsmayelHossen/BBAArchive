@@ -61,7 +61,7 @@ Create_Route.post("/process_post",RouteCheckUsingJWT, async function (req, res, 
       sumTag = req.body.document_tag.replace(/'/g, "''");
     }
 
-    const query = `INSERT INTO DOCUMENTS(datentime, meeting_id, category_id,emp_id,meeting_date,document_tag,doctype) VALUES('${datentime}','${id}', '${category_id}','${employee_id}','${meeting_date}','${sumTag}','${accessibility}')`;
+    const query = `INSERT INTO documents(datentime, meeting_id, category_id,emp_id,meeting_date,document_tag,doctype) VALUES('${datentime}','${id}', '${category_id}','${employee_id}','${meeting_date}','${sumTag}','${accessibility}')`;
     const result = await DBQuery(query);
     const get_document_id_query = "SELECT MAX(ID) as id from documents";
     const document_id_result = await DBQuery(get_document_id_query);

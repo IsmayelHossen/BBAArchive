@@ -36,7 +36,7 @@ View_Route.get("/docslistPublic",async function (req, res) {
 
   const query = `SELECT category.category_name as NAME, documents.*,fileupload.*  FROM fileupload
    inner join documents on documents.id=fileupload.documents_id
-inner join category on category.id=documents.category_id
+inner join category on category.id=documents.category_id where documents.doctype='public'
     order by fileupload.id asc `;
 
   const result = await DBQuery(query);

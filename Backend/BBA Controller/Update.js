@@ -11,8 +11,8 @@ const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsing
 Update_Route.put("/update/:id",RouteCheckUsingJWT, async function (req, res) {
   console.log(req.body);
   const id = req.params.id;
-  const { category_id, document_id, meeting_date } = req.body;
-  const query = `update documents set  CATEGORY_ID='${category_id}',MEETING_ID='${document_id}',meeting_date='${meeting_date}' where id=${id}`;
+  const { category_id, document_id, meeting_date,doctype } = req.body;
+  const query = `update documents set  CATEGORY_ID='${category_id}',MEETING_ID='${document_id}',meeting_date='${meeting_date}',DOCTYPE='${doctype}' where id=${id}`;
   const result = await DBQuery(query);
 
   res.status(200).json({
