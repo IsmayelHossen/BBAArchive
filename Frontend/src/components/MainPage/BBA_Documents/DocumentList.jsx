@@ -183,7 +183,7 @@ const DocumentList = () => {
   };
 
   const getCategory = () => {
-    axios.get(`${BaseUrl}/documents/category/view`).then((res) => {
+    axios.get(`${BaseUrl}/documents/categoryfor_documentlist/view`).then((res) => {
       console.log(res.data.data);
       setDataLoader(false);
       setcategoryData(res.data.data);

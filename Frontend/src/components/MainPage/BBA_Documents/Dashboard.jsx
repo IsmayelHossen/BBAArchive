@@ -31,7 +31,7 @@ const Dashboard = ({ alldata9 }) => {
   };
 
   const getDocument = () => {
-    axios.get(`${BaseUrl}/documents/categorylist`).then((res) => {
+    axios.get(`${BaseUrl}/documents/category/view`).then((res) => {
       setdata(res.data.data);
       setisLoader(false);
       console.log(res.data.data);
@@ -101,7 +101,7 @@ const Dashboard = ({ alldata9 }) => {
 
                       <div className="dash-widget-info">
                         <h3>{fileData.length}</h3>
-                        <span>Total Files</span>
+                        <span> Files</span>
                       </div>
                     </Link>
                   </div>

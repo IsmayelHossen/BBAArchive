@@ -11,8 +11,25 @@ const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsing
 Update_Route.put("/update/:id",RouteCheckUsingJWT, async function (req, res) {
   console.log(req.body);
   const id = req.params.id;
+    // Extract the day, month, and year
+    var day = new Date().getDate();
+    var month = new Date().getMonth() + 1; // Month is zero-based, so we add 1
+    const year = new Date().getFullYear();
+    
+    // Convert to Dhaka time zone
+    const options = { timeZone: 'Asia/Dhaka' };
+    const dhakaTime = new Date().toLocaleString('en-US', { ...options, hour12: true, hour: 'numeric', minute: 'numeric', second: 'numeric' });
+    
+    // Format the date as "day-month-year" and time as "hour:minute:second AM/PM"
+    if(day<10){
+      day='0'+day
+    }
+    if(month<10){
+  month='0'+month;
+    }
+    const formattedDateTime = `${day}-${month}-${year}, ${dhakaTime}`;
   const { category_id, document_id, meeting_date,doctype } = req.body;
-  const query = `update documents set  CATEGORY_ID='${category_id}',MEETING_ID='${document_id}',meeting_date='${meeting_date}',DOCTYPE='${doctype}' where id=${id}`;
+  const query = `update documents set  CATEGORY_ID='${category_id}',MEETING_ID='${document_id}',meeting_date='${meeting_date}',DOCTYPE='${doctype}',update_at='${formattedDateTime}' where id=${id}`;
   const result = await DBQuery(query);
 
   res.status(200).json({

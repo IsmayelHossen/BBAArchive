@@ -111,7 +111,8 @@ Create_Route.post("/category/add",RouteCheckUsingJWT, async function (req, res, 
     });
   }
   else{
-    const query = `INSERT INTO  category(category_name) VALUES('${category_name}')`;
+    console.log("user_id",req.user_id)
+    const query = `INSERT INTO  category(category_name,emp_id) VALUES('${category_name}','${req.user_id}')`;
     const result2 = await DBQuery(query);
     res.status(200).json({
       success: true,

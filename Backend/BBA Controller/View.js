@@ -62,14 +62,27 @@ View_Route.get("/categoryPublic", async function (req, res) {
 //get method
 View_Route.get("/getdata",RouteCheckUsingJWT, async function (req, res) {
  //("getdata")
+ if(req.user_rule=='Admin'){
   const query =
-    `SELECT category.category_name as NAME ,documents.* from documents inner join category on documents.category_id=category.id`;
-  const result = await DBQuery(query);
+  `SELECT category.category_name as NAME ,documents.* from documents inner join category on documents.category_id=category.id`;
+const result = await DBQuery(query);
 
-  res.status(200).json({
-    success: true,
-    data: result,
-  });
+res.status(200).json({
+  success: true,
+  data: result,
+});
+ }
+ else{
+  const query =
+  `SELECT category.category_name as NAME ,documents.* from documents inner join category on documents.category_id=category.id where documents.emp_id=${req.user_id}`;
+const result = await DBQuery(query);
+
+res.status(200).json({
+  success: true,
+  data: result,
+});
+ }
+
   ////(rows);
 });
 //get category wise 
@@ -129,19 +142,32 @@ inner join category on category.id=documents.category_id
 //category view
 View_Route.get("/category/view",RouteCheckUsingJWT, async function (req, res) {
   const s = req.params.id;
+ 
+  console.log("user_rule",req.user_rule,"req.user_id",req.user_id)
+  if(req.user_rule=='Admin'){
+    const query = `SELECT*from category `;
 
-  const query = `SELECT*from category `;
+    const result = await DBQuery(query);
+  
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  }
+  else{
+    const query = `SELECT*from category where emp_id=${req.user_id} `;
 
-  const result = await DBQuery(query);
+    const result = await DBQuery(query);
+  
+    res.status(200).json({
+      success: true,
+      data: result,
+    });
+  }
 
-  res.status(200).json({
-    success: true,
-    data: result,
-  });
 });
-//category list
-
-View_Route.get("/categorylist",RouteCheckUsingJWT, async function (req, res) {
+// categoryfor_documentlist page
+View_Route.get("/categoryfor_documentlist/view",RouteCheckUsingJWT, async function (req, res) {
   const s = req.params.id;
 
   const query = `SELECT*from category `;
@@ -153,6 +179,9 @@ View_Route.get("/categorylist",RouteCheckUsingJWT, async function (req, res) {
     data: result,
   });
 });
+//category list dashboard
+
+
 //get document last id
 View_Route.get("/getlastId/:docType",RouteCheckUsingJWT, async function (req, res) {
   const docTye = req.params.docType;

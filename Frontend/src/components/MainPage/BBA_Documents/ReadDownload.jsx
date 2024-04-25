@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Helmet } from "react-helmet";
 import { useForm } from "react-hook-form";
 
@@ -20,6 +20,7 @@ import { Link, useParams } from "react-router-dom";
 import ViewDocuments from "./ViewDocuments";
 import { BaseUrl } from "./CommonUrl";
 import { ColorRing, LineWave, Rings } from "react-loader-spinner";
+import { useReactToPrint } from "react-to-print";
 // import Dashboard from "../MainPage/Main/Dashboard";
 
 const ReadDownload = () => {
@@ -76,7 +77,7 @@ const params=useParams();
         const searchby_lowercase = search.toLowerCase();
         const SeearcData = Alldata.filter((item) => {
           const row =
-          item.name + " " + item.user_rule + " " + item.createtime+" "+item.terminal_ip+" " + item.terminal_type.split("_")[0]+" "+ item.emp_id+" "+item.usertype ;
+          item.name + " "+ item.category_name + " "  + item.user_rule + " " + item.createtime+" "+item.terminal_ip+" " + item.terminal_type.split("_")[0]+" "+ item.emp_id+" "+item.usertype ;
         return row.toLowerCase().includes(searchby_lowercase);
           // item.name.toLowerCase().includes(query)
         });
@@ -136,7 +137,10 @@ const params=useParams();
 
    
   ];
-
+  const componentRefBookList = useRef();
+  const handlePrintBookList = useReactToPrint({
+    content: () => componentRefBookList.current,
+  });
   return (
     <>
       
@@ -145,6 +149,11 @@ const params=useParams();
         <meta name="description" content="BBA STORE" />
       </Helmet>
       {/* Header */}
+      <style type="text/css" media="print">
+              {
+                " @media print{body{background:#fff;zoom:90%}@page :right {margin-right:.2cm; } @page{size:potrait;margin:.2cm}::-webkit-scrollbar{display:none} "
+              }
+            </style>
       <div className="page-wrapper">
         {/* Page Content */}
         <div className="content container-fluid">
@@ -181,13 +190,27 @@ const params=useParams();
                     onChange={(e) => SearchData(e)}
                   />
                 </div>
+                <div> 
+               
                 <button
                   type="button"
-                  class="Button_success float-right"
+                  class="Button_success "
                 
                 >
                   <span> {params.type=='read'?"Online Read":"Download"}</span>
                 </button>
+                  
+                <button
+                 onClick={handlePrintBookList}
+                  type="button"
+                  class="Button_primary"
+                
+                >
+                  <span> Print</span>
+                </button>
+                 </div>
+               
+               
               </div>
             </div>
             <div class="card-body1">
@@ -224,7 +247,7 @@ const params=useParams();
                     </>
                   )}
                   {!DataLoader && (
-                    <div className="table-responsive vendor_table_box">
+                    <div className="table-responsive vendor_table_box " >
                       <Table
                         className="table-striped"
                         pagination={{
@@ -238,7 +261,7 @@ const params=useParams();
                         style={{ overflowX: "auto" }}
                         columns={columns}
                         // bordered
-                        dataSource={Alldata ? Alldata : ""}
+                        dataSource={Alldata.length ? Alldata : ""}
                         rowKey={(record) => record.id}
                         onChange={console.log("chnage")}
                       />
@@ -247,9 +270,50 @@ const params=useParams();
                 </div>
               </div>
 
-              {/* update vendor modal start */}
+              {/* print table content start*/}
+              <div ref={componentRefBookList} className="readdownloadpage">
+  <h4 class="text-center top-1">Online Documents  {params.type=='read'?"Online Read":"Download"} History</h4>
 
-             
+<table class="table table-bordered"  >
+
+<thead>
+<th>User</th>
+<th>User Type</th>
+<th>User Rule</th>
+<th>IP</th>
+<th>Device Name</th>
+<th>Category</th>
+<th>File Name</th>
+<th>Online Read</th>
+</thead>
+<tbody>
+  {Alldata.length>0 && <>
+    {Alldata?.map((row)=>(
+<tr>
+<td>{row.name}</td>
+<td>{row.usertype}</td>
+<td>{row.user_rule}</td>
+<td>{row.terminal_ip}</td>
+<td>{row.terminal_type}</td>
+<td>
+{
+row.category_name
+
+}
+</td>
+<td>{row.filename}</td>
+<td>{row.createtime}</td>
+
+</tr>
+))}
+  </>}
+
+
+
+</tbody>
+</table>
+  </div>
+               {/* print table content end*/}
             </div>
           </div>
           {/* update vendor modal end  */}
