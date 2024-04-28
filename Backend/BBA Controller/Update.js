@@ -6,7 +6,7 @@ const multer = require("multer");
 const DBQuery = require("../Database/Query_Builder");
 const RouteCheckUsingJWT = require("../Database/RouteChecking/RouteCheckingUsingjws");
 //database
-
+const fs = require('fs');
 //update method
 Update_Route.put("/update/:id",RouteCheckUsingJWT, async function (req, res) {
   console.log(req.body);
@@ -27,6 +27,42 @@ Update_Route.put("/update/:id",RouteCheckUsingJWT, async function (req, res) {
     if(month<10){
   month='0'+month;
     }
+
+  //public to private or private to public 
+  const privateDir =  path.resolve(__dirname, '..', 'private/uploadDoc');
+  // path.resolve(__dirname, '..', 'private');
+  // const publicDir = path.join(__dirname, 'public');
+  const publicDir = path.resolve(__dirname, '..', 'public/uploadDoc');
+
+  const query_dataTypes=`select*from fileupload where DOCUMENTS_ID =${id}`;
+  const resultcheck = await DBQuery(query_dataTypes);
+  console.log("query_dataTypes",resultcheck)
+
+  if (req.body.doctype === 'public') {
+    resultcheck.forEach(row => {
+      const fileName = row.FILENAME;
+      const privateFilePath = path.join(privateDir, fileName);
+      const publicFilePath = path.join(publicDir, fileName);
+      console.log("privateFilePath",privateFilePath)
+      if (fs.existsSync(privateFilePath)) {
+        console.log("privateFilePath2",privateFilePath)
+        fs.renameSync(privateFilePath, publicFilePath);
+      }
+    });
+  } else if (req.body.doctype === 'private') {
+    resultcheck.forEach(row => {
+      const fileName = row.FILENAME;
+      const privateFilePath = path.join(privateDir, fileName);
+      const publicFilePath = path.join(publicDir, fileName);
+      console.log("publicFilePath",publicFilePath)
+      if (fs.existsSync(publicFilePath)) {
+        console.log("publicFilePath",publicFilePath)
+        fs.renameSync(publicFilePath, privateFilePath);
+      }
+    });
+  }
+
+
     const formattedDateTime = `${day}-${month}-${year}, ${dhakaTime}`;
   const { category_id, document_id, meeting_date,doctype } = req.body;
   const query = `update documents set  CATEGORY_ID='${category_id}',MEETING_ID='${document_id}',meeting_date='${meeting_date}',DOCTYPE='${doctype}',update_at='${formattedDateTime}' where id=${id}`;

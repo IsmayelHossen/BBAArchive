@@ -170,6 +170,7 @@ const currentYear = currentDate.getFullYear();
         {/* Page Content */}
         <div className="content container-fluid">
         <h6>©-{currentYear},Bangladesh Bridge Authority,All Rights Reserved.</h6>
+        
             </div>
             </div>
       </div>

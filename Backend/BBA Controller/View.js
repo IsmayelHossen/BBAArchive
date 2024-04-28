@@ -166,6 +166,19 @@ View_Route.get("/category/view",RouteCheckUsingJWT, async function (req, res) {
   }
 
 });
+//category_fordocuments
+View_Route.get("/category_fordocuments",RouteCheckUsingJWT, async function (req, res) {
+  const s = req.params.id;
+
+  const query = `SELECT*from category `;
+
+  const result = await DBQuery(query);
+
+  res.status(200).json({
+    success: true,
+    data: result,
+  });
+});
 // categoryfor_documentlist page
 View_Route.get("/categoryfor_documentlist/view",RouteCheckUsingJWT, async function (req, res) {
   const s = req.params.id;

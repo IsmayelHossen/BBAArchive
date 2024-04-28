@@ -88,7 +88,7 @@ const userData = JSON.parse(userDataString);
     });
   };
   const getCategory = () => {
-    axios.get(`${BaseUrl}/documents/category/view`).then((res) => {
+    axios.get(`${BaseUrl}/documents/category_fordocuments`).then((res) => {
       console.log(res.data.data);
       setDataLoader(false);
       setcategoryData(res.data.data);

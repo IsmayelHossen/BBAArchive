@@ -13,7 +13,14 @@ var c;
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "./public/uploadDoc/");
+    console.log("req",req.body)
+    if(req.body.accessibility=='public'){
+      cb(null, "./public/uploadDoc/");
+    }
+    else{
+      cb(null, "./private/uploadDoc/");
+    }
+   
   },
   filename: (req, file, cb) => {
     const fileext = path.extname(file.originalname);

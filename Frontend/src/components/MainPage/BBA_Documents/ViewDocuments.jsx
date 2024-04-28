@@ -126,7 +126,8 @@ const ViewDocuments = () => {
     formData.append("datentime", RearangeTime);
     formData.append("idp", useParam.id);
     formData.append("id", useParam.document_id);
-
+    formData.append("accessibility",filteredData?.DOCTYPE);
+    
     if (data.add_more_file.length > 1) {
       for (let i = 0; i < data.add_more_file.length; i++) {
         formData.append("add_more_file", data.add_more_file[i]);
@@ -282,6 +283,7 @@ const ViewDocuments = () => {
                         onSubmit={handleSubmit(onSubmit)}
                         class="mb-3 form_design"
                       >
+                          
                         <div className="mb-2 row">
                           <label
                             for="inputtext"
@@ -295,6 +297,7 @@ const ViewDocuments = () => {
                             <input
                               type="file"
                               id="customFile"
+                              class="form-control bba_documents-form-control"
                               {...register("add_more_file", {
                                 required: true,
                               })}

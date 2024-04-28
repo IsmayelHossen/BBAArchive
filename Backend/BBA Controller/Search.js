@@ -84,7 +84,7 @@ Search_Route.get("/all_documents_filterPublic/:filter", async function (req, res
   const query = `SELECT category_name as NAME,fileupload.*,documents.* FROM fileupload 
   inner join documents on fileupload.documents_id=documents.id
   inner join category on category.id=documents.category_id
-   where documents.category_id='${filter}'     `;
+   where documents.category_id='${filter}' and documents.doctype='public'     `;
 
  
   const result = await DBQuery(query);
