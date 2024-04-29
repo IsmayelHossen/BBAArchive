@@ -24,9 +24,12 @@ const PublicDashboard = ({ alldata9 }) => {
   const [Alldata, setdata] = useState([]);
   const [fileData, setfileData] = useState([]);
   const [isLoader, setisLoader] = useState(true);
+  const [fileDataTotal, setfileDataTotal] = useState([]);
+  
   useEffect(() => {
     getDataapicall();
     getDocument();
+    getDocslistAll()
   }, []);
   const currentDate = new Date();
 
@@ -52,6 +55,12 @@ const currentYear = currentDate.getFullYear();
     const count = fileData?.filter((data) => data.NAME == category);
     console.log(count.length);
     return count.length;
+  };
+  const getDocslistAll = () => {
+    axios.get(`${BaseUrl}/documents/docslistPublic`).then((res) => {
+    ;
+      setfileDataTotal(res.data.data);
+    });
   };
   //tjhghj
   return (
@@ -108,7 +117,7 @@ const currentYear = currentDate.getFullYear();
                       </span>
 
                       <div className="dash-widget-info dash-widget-icon_public">
-                        <h3>{fileData?.length}</h3>
+                        <h3>{fileDataTotal?.length}</h3>
                         <span>Total Files</span>
                       </div>
                     </Link>

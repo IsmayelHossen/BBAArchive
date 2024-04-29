@@ -238,20 +238,24 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
     {
       title: "Documents Type",
       dataIndex: "NAME",
+      className: "dataBreak",
     },
     {
       title: "Document Id/Name",
       dataIndex: "MEETING_ID",
+      className: "dataBreak",
     },
 
     {
       title: "File Name",
       dataIndex: "FILENAME",
+
       render: (text, rowKey) => (
         <>
           <p>{rowKey.FILENAME.split("_")[0]}</p>
         </>
       ),
+      className: "dataBreak",
     },
     {
       title: "Ebook",
@@ -301,7 +305,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
         <div className="content container-fluid">
           <div className="card-header1">
             <h4
-              className="text-center mx-auto mb-3 text-uppercase fddd"
+              className="text-center mx-auto mb-1 text-uppercase fddd"
               id="hddd"
             >
               BBA ARCHIVE LIST

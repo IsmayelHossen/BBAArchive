@@ -68,6 +68,7 @@ const IndividualDocument = () => {
       const AllgetaData = res.data.data.filter(
         (item) => item.NAME == useParam.type
       );
+      console.log("AllgetaData",useParam.type)
       AllgetaData.sort((a, b) => b.MEETING_ID - a.MEETING_ID);
       const sarchData = AllgetaData.filter((item) => {
         if (searchdata == "") {
@@ -241,6 +242,7 @@ const IndividualDocument = () => {
     {
       title: "Documents ID/Name",
       dataIndex: "MEETING_ID",
+      className: "dataBreak",
     },
 
     {
@@ -315,7 +317,7 @@ const IndividualDocument = () => {
   console.log("uniqueDOCTYPES",uniqueDOCTYPES)
   return (
     <>
-      {console.log("render344")}
+ 
       <Helmet>
         <title>Dashboard - BBA Document </title>
         <meta name="description" content="BBA STORE" />

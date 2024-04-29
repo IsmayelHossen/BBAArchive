@@ -267,6 +267,7 @@ const userData = JSON.parse(userDataString);
     {
       title: "Documents Type",
       dataIndex: "NAME",
+   
     },
 
     {
@@ -714,7 +715,7 @@ const userData = JSON.parse(userDataString);
                         style={{ overflowX: "auto" }}
                         columns={columns}
                         // bordered
-                        dataSource={Alldata ? Alldata : ""}
+                        dataSource={Alldata.length ? Alldata : ""}
                         rowKey={(record) => record.id}
                         onChange={console.log("chnage")}
                       />

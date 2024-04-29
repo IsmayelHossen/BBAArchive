@@ -53,7 +53,8 @@ Create_Route.post("/process_post",RouteCheckUsingJWT, async function (req, res, 
     }
 
     console.log(req.body);
-    const { datentime, id, category_id, employee_id, meeting_date,accessibility } = req.body;
+    const { datentime, category_id, employee_id, meeting_date,accessibility } = req.body;
+    var id=req.body.id.replace(/'/g, "''")
     // var document_tag = req.body.document_tag.replace(/'/g, "''");
     var sumTag = "";
     if (
@@ -77,7 +78,9 @@ Create_Route.post("/process_post",RouteCheckUsingJWT, async function (req, res, 
 
     if (req.files.length > 0) {
       req.files.map(async (row, index) => {
-        const query2 = `INSERT INTO  fileupload(datentime,fileName, documents_id, f_size) VALUES('${req.body.datentime}','${row.filename}', '${document_id_result[0].id}','${row.size}')`;
+        var filename=row.filename.replace(/'/g, "''");
+   
+        const query2 = `INSERT INTO  fileupload(datentime,fileName, documents_id, f_size) VALUES('${req.body.datentime}','${filename}', '${document_id_result[0].id}','${row.size}')`;
         const result2 = await DBQuery(query2);
       });
     }

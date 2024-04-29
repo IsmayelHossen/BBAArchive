@@ -12,9 +12,9 @@ const PublicHeader = () => {
         <meta name="description" content="BBA DOCUMENTS" />
       </Helmet>
       <div>
-       <div className="publicheader " style={{right:"0px"}}>
-       <Link to ="/login" className='float-right h5'>Login</Link>
-         <div class="container-fluid d-flex justify-content-between ">
+       <div className="publicheader clearfix " style={{right:"0px"}}>
+     
+         <div class="container-fluid d-flex justify-content-between  ">
          
       <Link to="/"> <img src={BDImage} class="bdimagelogo" alt="Bangladesh Monogram" /></Link> 
          <div><h2 className="pdtitle"> Bangladesh Bridge Authority</h2>
@@ -27,14 +27,15 @@ const PublicHeader = () => {
              
                
          </div>
- 
-         {/* /Header Menu */}
-         {/* Mobile Menu */}
       
-         {/* /Mobile Menu */}
+       <div className='mt-1'>
+       <Link to ="/login" className=' h5 mr-1  clearfix float-right' style={{textShadow: '1px 2px 1px #b2b5b7'}}>  <i class="fa fa-sign-in login-icon" aria-hidden="true"></i>Login</Link>
        </div>
-     </div>
+       </div>
+   
         </div>
+        </div>
+        
     );
 }
 

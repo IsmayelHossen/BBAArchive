@@ -197,7 +197,80 @@ const ViewDocuments = () => {
           // Handle error if needed
         });
     };
-    
+    const columns = [
+      {
+        title: "SN",
+        render: (text, record,index) => (
+         index+1
+        ),
+      },
+      {
+        title: "Entry Date",
+        dataIndex: "DATENTIME",
+      },
+  
+      {
+        title: "File Name",
+        render: (text, record) => (
+          record.FILENAME.split("_")[0]
+        ),
+        className: "dataBreak",
+      },
+      {
+        title: "Ebook",
+        render: (text, record) => (
+          record.FILENAME.split(".")[1] === "pdf" ? (
+                                 
+            <Link  onClick={()=>ReadingPost('Reading',record.CATEGORY_ID,record.FILENAME,record.DOCUMENTS_ID)}  to={`/docs/pdfView/${record.FILENAME}/${record.ID}`}>
+            <i class="fa fa-book h3"></i>
+          </Link>
+         ) : (
+           <a onClick={OnlyPdfFileRead}>
+             <i class="fa fa-book h3"></i>
+           </a>
+         )
+        ),
+      },
+      {
+        title: "Download",
+        render: (text, row) => (
+          <p style={{cursor:" pointer"}}  onClick={()=>DownloadPost('Download',row.CATEGORY_ID,row.FILENAME,row.DOCUMENTS_ID)}>
+         
+        
+      <span class="fa fa-download"></span>({" "}
+      {row.F_SIZE / 1024 > 1023
+        ? (row.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
+        : Math.ceil(row.F_SIZE / 1024) + " kb"}
+      )
+    </p>
+        ),
+      },
+     
+      {
+       
+        title:  userData.user_rule=="Admin"?"Action":"",
+        render: (text, row) => (
+          <div className="">
+                {userData.user_rule=="Admin"&&<a
+                                  className=" btn btn-danger btn-sm"
+                                  href="#"
+                                 
+                                  onClick={() => {
+                                    DeleteIndividual_vendor(
+                                      row.ID,
+                                      row.FILENAME
+                                    );
+                                  }}
+                                >
+                                  <i
+                                    className="fa fa-trash-o m-r-5"
+                                    style={{ fontSize: "20px", color: "white" }}
+                                  />
+                                </a>}
+          </div>
+        ),
+      },
+    ];
   return (
     <>
       {console.log("render344")}
@@ -345,103 +418,55 @@ const ViewDocuments = () => {
           {/* add more file end */}
           <div class="card-body1">
             <div className="row">
-              <div className="col-md-12">
-                {DataLoader && (
-                  <>
-                    <div class="row">
-                      <div class="col-md-5"></div>
-                      <div class="col-md-2 mt-4">
-                        <ColorRing
-                          visible={true}
-                          height="80"
-                          width={100}
-                          ariaLabel="blocks-loading"
-                          wrapperStyle={{}}
-                          wrapperClass="blocks-wrapper"
-                          colors={[
-                            "#e15b64",
-                            "#f47e60",
-                            "#f8b26a",
-                            "#abbd81",
-                            "#849b87",
-                          ]}
-                        />
+            <div className="col-md-12">
+                  {DataLoader && (
+                    <>
+                      <div class="row">
+                        <div class="col-md-5"></div>
+                        <div class="col-md-2 mt-4">
+                          <ColorRing
+                            visible={true}
+                            height="80"
+                            width={100}
+                            ariaLabel="blocks-loading"
+                            wrapperStyle={{}}
+                            wrapperClass="blocks-wrapper"
+                            colors={[
+                              "#e15b64",
+                              "#f47e60",
+                              "#f8b26a",
+                              "#abbd81",
+                              "#849b87",
+                            ]}
+                          />
+                        </div>
+                        <div class="col-md-5"></div>
                       </div>
-                      <div class="col-md-5"></div>
+                    </>
+                  )}
+                  {!DataLoader && (
+                    <div className="table-responsive vendor_table_box">
+                      <Table
+                        className="table-striped"
+                        pagination={{
+                          total: fileData?.length,
+                          showTotal: (total, range) =>
+                            `Showing ${range[0]} to ${range[1]} of ${total} entries`,
+                          showSizeChanger: true,
+                          onShowSizeChange: onShowSizeChange,
+                          itemRender: itemRender,
+                        }}
+                        style={{ overflowX: "auto" }}
+                        columns={columns}
+                        // bordered
+                        dataSource={fileData.length ? fileData : ""}
+                        rowKey={(record) => record.id}
+                        onChange={console.log("chnage")}
+                      />
                     </div>
-                  </>
-                )}
-                {!DataLoader && (
-                  <div className="table-responsive vendor_table_box">
-                    <table class="table table-striped">
-                      <thead>
-                        <tr>
-                          <th>SN</th>
-                          <th>Entry Date</th>
-                          <th>File Name</th>
-                          <th>Ebook</th>
-                          <th>Download</th>
-                          {userData.user_rule=="Admin"&& <th>Action</th>}
-                        
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {fileData.length > 0 &&
-                          fileData.map((row, index) => (
-                            <tr>
-                              <td>{index + 1}</td>
-                              <td>{row.DATENTIME}</td>
-                              <td>{row.FILENAME.split("_")[0]}</td>
-
-                              <td>
-                            
-                                {row.FILENAME.split(".")[1] === "pdf" ? (
-                                 
-                                   <Link  onClick={()=>ReadingPost('Reading',row.CATEGORY_ID,row.FILENAME,row.DOCUMENTS_ID)}  to={`/docs/pdfView/${row.FILENAME}/${row.ID}`}>
-                                   <i class="fa fa-book h3"></i>
-                                 </Link>
-                                ) : (
-                                  <a onClick={OnlyPdfFileRead}>
-                                    <i class="fa fa-book h3"></i>
-                                  </a>
-                                )}
-                              </td>
-                              <td>
-                              <p style={{cursor:" pointer"}}  onClick={()=>DownloadPost('Download',row.CATEGORY_ID,row.FILENAME,row.DOCUMENTS_ID)}>
-         
-        
-         <span class="fa fa-download"></span>({" "}
-         {row.F_SIZE / 1024 > 1023
-           ? (row.F_SIZE / 1024 / 1024).toPrecision(3) + " mb"
-           : Math.ceil(row.F_SIZE / 1024) + " kb"}
-         )
-       </p>
-                              </td>
-                              <td className="">
-                                {userData.user_rule=="Admin"&&<a
-                                  className="dropdown-item"
-                                  href="#"
-                                  onClick={() => {
-                                    DeleteIndividual_vendor(
-                                      row.ID,
-                                      row.FILENAME
-                                    );
-                                  }}
-                                >
-                                  <i
-                                    className="fa fa-trash-o m-r-5"
-                                    style={{ fontSize: "20px", color: "red" }}
-                                  />
-                                </a>}
-                                
-                              </td>
-                            </tr>
-                          ))}
-                      </tbody>
-                    </table>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
+            
               {/* ebook trial verson start */}
               <div></div>
 

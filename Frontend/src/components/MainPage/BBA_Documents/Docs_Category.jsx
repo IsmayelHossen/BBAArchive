@@ -162,7 +162,8 @@ const Docs_Category = () => {
     if (search == "") {
       getDataapicall();
     } else {
-      const searchby_lowercase = search.toLowerCase();
+    
+      const searchby_lowercase = search.toLowerCase().replace(/'/g, "''");
       axios
         .get(`${BaseUrl}/documents/category/search/${searchby_lowercase}`)
         .then((response) => {

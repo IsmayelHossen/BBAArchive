@@ -424,12 +424,13 @@ body {
   box-shadow: 0 15px 15px rgba(0, 0, 0, 0.15);
   transform: translateY(-5px);
 }
-.page-wrapper-publicDashboard{
-  left: 0;
-  margin-left: 10px;
-  padding-top: 10px;
-  position: relative;
-  transition: all 0.2s ease-in-out
+.page-wrapper-publicDashboard {
+	left: 0;
+	margin-left: 10px;
+	padding-top: 0px;
+	position: relative;
+	transition: all 0.2s ease-in-out;
+	margin-top: -8px !important;
 }
 .filecard{
   background-color: #26A3C7;
@@ -461,11 +462,17 @@ body {
 	text-align: center;
 	width: 60px;
 }
-.pdtitle{
-  font-size: 1.875rem;
+.pdtitle {
+	font-size: 1.875rem;
+	text-shadow: 1px 3px 3px #000;
+	color: #ec1f1f;
+	/* box-shadow: 0px 1px 2px #f5f5f5; */
+	padding: 0px 54px;
 }
-.pdnametitle{
-  font-size: 1.2rem;
+.pdnametitle {
+	font-size: 1.4rem;
+	text-shadow: 1px 3px #999;
+	color: #6a1111;
 }
 .bbimagelogo{
   width: 100px;
@@ -479,6 +486,10 @@ body {
 	margin-top: 1rem;
 	margin-left: 1.8rem;
 	margin-right: 1.8rem;
+	background-color: #fff;
+	border-radius: 5px;
+	box-shadow: 0px 17px 22px #f5f5f5;
+	padding: 3px 2px;
 }
 .card-headerPublic{
   padding: 0em 0em;
@@ -491,6 +502,9 @@ body {
 }
 /* login form end */
 /* media design */
+.dataBreak{
+  white-space: pre-wrap;
+}
 @media only screen and (max-width: 600px) {
 
   .publicheader {

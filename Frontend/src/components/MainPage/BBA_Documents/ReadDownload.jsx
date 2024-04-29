@@ -109,6 +109,7 @@ const params=useParams();
       {
         title: "File Name",
         dataIndex: "filename",
+        className: "dataBreak",
       },
     {
       title: params.type=='read'?"Online Read":"Download Time",

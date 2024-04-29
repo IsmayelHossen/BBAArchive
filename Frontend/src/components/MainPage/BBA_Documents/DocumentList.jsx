@@ -244,10 +244,12 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
     {
       title: "Documents Type",
       dataIndex: "NAME",
+      className:"dataBreak"
     },
     {
       title: "Document Id",
       dataIndex: "MEETING_ID",
+      className:"dataBreak"
     },
 
     {
@@ -258,6 +260,7 @@ const DownloadPost = (type, categoryid, filename, doc_id) => {
           <p>{rowKey.FILENAME.split("_")[0]}</p>
         </>
       ),
+      className:"dataBreak"
     },
     {
       title: "Ebook",
