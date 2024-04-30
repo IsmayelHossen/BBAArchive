@@ -4,6 +4,7 @@ import BDImage from '../../../assets/img/bdmonogram.png';
 import ArchiveImage from '../../../assets/img/archive.png';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { Fade, Slide } from "react-awesome-reveal";
 const PublicHeader = () => {
     return (
         <div>
@@ -17,7 +18,14 @@ const PublicHeader = () => {
          <div class="container-fluid d-flex justify-content-between  ">
          
       <Link to="/"> <img src={BDImage} class="bdimagelogo" alt="Bangladesh Monogram" /></Link> 
-         <div><h2 className="pdtitle"> Bangladesh Bridge Authority</h2>
+         <div>
+      
+       
+      
+     
+      <h2 className="pdtitle"> <Slide >    Bangladesh Bridge Authority</Slide></h2>
+      
+     
                 <h3 className="pdnametitle">Archive<img src={ArchiveImage} class="" width="40" height="40" alt="Archive" /></h3></div>
                 <div>
                 <Link to="/"> <img src={BBAImage} class="bbimagelogo" alt="BBA" /></Link>

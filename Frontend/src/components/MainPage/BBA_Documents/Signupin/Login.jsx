@@ -11,6 +11,7 @@ import { headerlogo } from '../../../Entryfile/imagepath'
 import BBAImage from '../../../assets/img/BBA-logo.png';
 import swal from "sweetalert";
 import Cookies from "js-cookie";
+import { Slide } from "react-awesome-reveal";
 const Login = () => {
   const { register, handleSubmit, watch, formState: { errors } } = useForm();
   const navigate = useNavigate();
@@ -191,11 +192,15 @@ else{
         //     </div>
         //   </div>
         }
+        <Slide duration='2000' direction='up'>
 <div className="container mt-5">
 <div className="company-info">
   <img src={`${BBAImage}`} alt="BBA Archive" className="company-logo img-fluid" />
   <h1 className="company-name">BBA Archive</h1>
 </div>
+
+
+
   <div className="signup-form">
   
     <form   onSubmit={handleSubmit(onSubmit)}>
@@ -234,8 +239,9 @@ else{
     
     </form>
   </div>
+ 
 </div>
-
+</Slide>
       </div>
     </>
   );

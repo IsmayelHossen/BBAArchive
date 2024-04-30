@@ -14,6 +14,7 @@ import "../../BBA_Documents/vendor.css";
 import { BaseUrl } from "./../CommonUrl";
 
 import PublicHeader from "./PublicHeader";
+import { Fade, Slide } from "react-awesome-reveal";
 // import 'Assets/plugins/morris/morris.min.js';
 // import 'Assets/plugins/raphael/raphael.min.js';
 // import 'Assets/js/chart.js';
@@ -109,6 +110,7 @@ const currentYear = currentDate.getFullYear();
            <>
             <div className="row">
               <div className=" col-md-6 ">
+              <Slide triggerOnce direction='left' duration='2000'>
                 <div className="card dash-widget filecard">
                   <div className="card-body">
                     <Link to={`/docs/list`}>
@@ -123,8 +125,10 @@ const currentYear = currentDate.getFullYear();
                     </Link>
                   </div>
                 </div>
+                </Slide>
               </div>
               <div className=" col-md-6">
+              <Slide triggerOnce direction='right' duration='2000'>
                 <div className="card dash-widget categorycard">
                   <div className="card-body">
                     <Link to={"/docs/list"}>
@@ -146,6 +150,7 @@ const currentYear = currentDate.getFullYear();
                     </Link>
                   </div>
                 </div>
+                </Slide>
               </div>
               </div>
               <div className="row mt-1">
@@ -153,6 +158,7 @@ const currentYear = currentDate.getFullYear();
                   Alldata?.map((row, index) => (
                     <>
                       <div className="col-md-3 ">
+                        <Slide direction='up' duration='3000' >
                         <div className="card dash-widget singlecategorycard">
                           <div className="card-body">
                       
@@ -166,6 +172,7 @@ const currentYear = currentDate.getFullYear();
                         
                           </div>
                         </div>
+                        </Slide>
                       </div>
                     </>
                   ))}

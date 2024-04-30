@@ -78,7 +78,9 @@ Update_Route.put("/update/:id",RouteCheckUsingJWT, async function (req, res) {
 Update_Route.put("/category/update/:id",RouteCheckUsingJWT, async function (req, res) {
   console.log(req.body);
   const id = req.params.id;
-  const { category_name } = req.body;
+
+  var category_name=req.body.category_name.replace(/'/g, "''")
+
   const query = `update category set  category_name='${category_name}' where id=${id}`;
   const result = await DBQuery(query);
 
